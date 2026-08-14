@@ -3,8 +3,8 @@
 # Rule Check Details
 
 - Read all returned rejections and warnings after mutation. For an out-of-options value, present returned candidates when intent is ambiguous and retry only with an exact advertised value.
-- Fix accidental directing warnings. For an intentional exception, show the exact warning and obtain confirmation for the next paid call.
-- Before a paid pixel action, inspect the affected Scene or Draft again. If blocked, pass only returned ackKey values through the acknowledgment argument advertised by that tool; never construct or reuse an acknowledgment.
+- Fix accidental directing warnings. For an intentional exception, show the exact warning and obtain confirmation for the next paid call; never hide a warning or silently normalize it away.
+- Before a paid pixel action, inspect the affected Scene or Draft again. If blocked, fix the warning or, after confirmation, pass only returned ackKey values through the acknowledgment argument advertised by that tool; never construct or reuse an acknowledgment, because one applies to that call alone.
 - After mutation or generation, report only fields, targets, warnings, counts, and statuses proven by results. State partial success and skipped targets explicitly.
 
 Complete when: Every returned Rule Check item has one visible disposition: fixed, confirmed for the next call only, or pending the director's decision.

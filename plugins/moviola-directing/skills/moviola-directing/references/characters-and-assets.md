@@ -3,7 +3,7 @@
 # Characters and Visual Assets
 
 - Call list_characters for the selected Project and get_character when identity or asset detail matters. Resolve one existing Character before updating or deleting it, and create a genuinely new Character with create_character only when the roster shows no match.
-- Give recurring Characters a stable proper name, appearance, costume, role, and props. Use update_character for identity changes and name_ko for a Korean display-name change; report only returned changed fields.
+- Give recurring Characters a stable proper name, appearance, costume, role, and props. Do not use a 직업·역할어 (job or role label) such as friend, villain, detective, or doctor as a name. Use update_character for identity changes and name_ko for a Korean display-name change, keeping name only to identify the current Character when required; report only returned changed fields.
 - Character appearance에는 모든 컷에 고정할 생김새만 적고 표정 성향은 넣지 말라. 표정은 각 Cut description에 적어라.
 - Use add_scene character inputs for initial Scene placement when creating the Scene. Use assign_character for later Scene-level presence or screen position and focusSubject for one Cut's visual focus.
 - **정체성은 라이브러리, 옷은 씬이다.** 라이브러리 Character 의 의상은 그 인물이 평소 입는 **기본값**이고, 그 씬에서만 다른 옷을 입으면(잠수복·우비·방호복·퇴근복·상복) 그 씬 인물에 assign_character 의 costume 으로 적는다. 씬에 옷이 적혀 있으면 그 씬 컷 프롬프트에는 그것만 실리고 기본 의상은 안 실린다. 지우려면 빈 문자열을 주면 기본 의상으로 돌아간다.
@@ -12,7 +12,7 @@
 - **옷을 정하는 힘은 참조 그림 > 컷 설명 > 이 칸 순이다.** 이미 그려진 씬의 옷을 바꾸면 글만 바뀌고 픽셀은 안 따라오니 다시 그려야 반영된다고 말하라. 와이드·설정 샷은 인물 문장 자체를 안 실어 이 칸이 닿지 않는다.
 - Confirm generate_portrait, then poll get_job_status. When it completes, look at the candidates with get_portrait_candidates, which returns them as one image labelled [1]…[N]. Inspect that image and the current Character state, then call select_portrait with that job_id and the label number as candidate; selection locks the Portrait and starts Character Plate generation.
 - Look at Character Plate candidates with get_plate_candidates and the plateJobId that select_portrait returned, then call select_plate with that job_id and candidate number. Both selectors still accept a candidate url, but prefer the number — a signed candidate URL is long enough that retyping it corrupts it. A selection is confirmed immediately before the call because it triggers downstream work.
-- Treat Portrait → Character Plate → Character Reference Sheet as a derived chain. Report stale, running, partial, failed, or complete exactly as returned; a queued Job is not an asset completion.
+- Treat Portrait → Character Plate → Character Reference Sheet as a derived chain, and every returned asset state — those three plus an uploaded Reference Image — as fact. Report stale, running, partial, failed, or complete exactly as returned; a queued Job is not an asset completion.
 - Finish at least the Portrait and Character Plate for every Character placed in a Scene before that Scene's Storyboard is generated. Drawn without them, one person gets a different face, ethnicity, and costume in each Cut, and the split already shows in the Sketches.
 - Before delete_character, name the Character and the Portrait, Plate, and Reference Sheet that disappear. If no unique human-readable name resolves, delete nothing and ask once.
 

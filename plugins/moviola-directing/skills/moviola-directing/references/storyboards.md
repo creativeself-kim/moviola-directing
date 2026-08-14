@@ -8,6 +8,7 @@
 - State the Cut count of the named Scenes when asking for approval, and say plainly that the rest of the board stays undrawn. The Draft's total Cut count belongs to a whole-board request only.
 - Also check the Portrait and Plate state of every Character placed in the affected Scenes. If either asset is missing for anyone, name those Characters and recommend generating their assets first, because Sketches drawn without them give one person a different face and costume in each Cut.
 - Treat generate_storyboard's job_id as queued or processing. Poll get_job_status and inspect the resulting Scene boards after completion.
+- One Draft bakes one range at a time. Re-firing the same range while its Job runs joins that Job and returns joined; a different range is refused outright and carries runningJobId instead of a job_id. A refusal means nothing was queued, so poll get_job_status on that Job, wait for completion, then fire the second range again. Never report refused Scenes as drawn or as waiting in line.
 - Keep a successful Sketch as the Storyboard base. A request for color finalization belongs to renders.md; a request for motion belongs to animatics.md.
 
 Complete when: Every requested Scene board is either visibly inspected, proven generated, proven failed, or accurately reported as still processing with its Job identifier.

@@ -7,7 +7,7 @@ description: Direct MOVIOLA projects through MOVIOLA MCP tools. Use when Claude 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `2.9`: send this exact value as `skill_version` in every `get_draft_outline` call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `2.20`: send this exact value as `skill_version` in every `get_draft_outline` call. The server's current Rule Check remains authoritative.
 
 ## Run the directing loop
 
@@ -38,19 +38,31 @@ Read every reference selected below before acting:
 - **Review or critique without mutating the Draft**: [review.md](references/review.md).
 - **Perform any mutation or paid pixel action**: [rule-check.md](references/rule-check.md).
 - **Choose shot specs for Cuts**: [shot-design.md](references/shot-design.md).
-- **Use another film's cut rhythm — an exact film and sequence, a feeling/intent/condition/comparison, or an unprompted Scene re-split**: [directing-samples.md](references/directing-samples.md).
+- **Use another film's cut rhythm — a Scene that needs a rhythm recommendation, an exact film and sequence, a feeling/intent/condition/comparison, or an unprompted Scene re-split**: [directing-samples.md](references/directing-samples.md).
 - **Author, edit, or review visual direction**: also read [directing-rules.md](references/directing-rules.md).
 - **A genre is established by the Draft briefing or director**: read exactly its guide—[drama](references/genre-drama.md), [action](references/genre-action.md), [thriller](references/genre-thriller.md), [romance](references/genre-romance.md), [horror](references/genre-horror.md), [comedy](references/genre-comedy.md), [fantasy](references/genre-fantasy.md), or [period drama](references/genre-period.md). Ask before committing to genre-specific rhythm only when neither source establishes one.
 Complete when: every reference required by the chosen branch—and no unrelated genre guide—has been read.
+
+### Locate the Draft on the pipeline
+Stages run in this order: Scene and Cut writing → Character assets (Portrait, then Plate) → Storyboard Sketches → color finalization → Animatic clips → review. A stage opens only once the one before it closes for the Scenes at hand:
+- Character assets: opens once anyone stands in a Scene, closes when each of them carries a chosen Portrait and Plate. Cuts drawn earlier hand one person a different face.
+- Storyboard Sketches: those assets closed, and Cut text and shot specs settled.
+- Color finalization: Sketches nobody still wants to retake, because a Cut corrected after this point is paid for twice.
+- Animatic clips: a finalized frame for each Cut to move away from.
+- Review: clips returned complete, which count as generated rather than seen until something describes them.
+- A stage belongs to a Scene, not to the Draft — one Draft sits at review for its first Scene and at writing for its fifth. Place the work by reading the outline and the roster.
+- Name the Scenes you mean and the one thing the stage above is waiting on. The next arrow, recited without reading state, is not a proposal.
+Complete when: The reported work sits on one named stage, and the stage above it is either open or named together with what it waits on, taken from returned state rather than assumed.
 
 ### 3. Semantic tool routing
 - Keep an opinion, evaluation, or idea request read-only. When the director asks for alternatives, separate the proposal from any later edit or paid rerender.
 - Create one Scene with all planned Cuts in one add_scene call. Use add_cut only for later Cut slots inside an existing Scene; insert at the front with afterOrder=0 and after a known Cut with that Cut's order.
 - Use update_scene to change only an existing Scene's location, timeOfDay, weather, mood, or description without replacing its Cuts or Character placements.
 - Use update_cut for one focused field and update_cuts for an atomic multi-Cut Cut Spec edit. When update_cuts changes nothing, read each not_updated_cuts reason: unchanged, not_found, or locked. Use focusSubject for what one Cut watches; use assign_character for Scene-level presence and screen position.
+- Use update_cut_characters (add/remove by name) to change who stands in one Cut's frame — a declared placement drives the shot_character_mismatch warning, so removing the extra person is how a 'Single with two characters' warning is resolved through data.
 - Use dedicated add, delete, move, duplicate, and update tools. Preserve returned Scene and Cut identifiers and use only values advertised by the current schema.
 - Use regenerate_cut once for one existing Cut and regenerate_board once for a whole-board request. Update semantic fields before requesting a rerender. Keep Storyboard and Animatic values in their dedicated fields.
-- Pass sceneIds to generate_storyboard, regenerate_board, or finalize_render for a partial-Scene request, and state those Scenes' Cut count as the paid scale.
+- Pass sceneIds to generate_storyboard, regenerate_board, or finalize_render for a partial-Scene request, and state those Scenes' Cut count as the paid scale. finalize_render narrows one step further with cutIds for a Cut-level request.
 - Include a concise reason with every mutation that accepts it so the Decision Memo records why the work changed.
 - Use the terminal model's own brain for authoring, shot choices, and creative review. The terminal seat does not borrow MOVIOLA's create_scenario, ai_shot, ai_shot_all, advise, or revision_proposal models.
 Complete when: Every requested meaning maps to one available semantic tool or an honestly reported limitation, with no invented signature or widened scope.
@@ -63,18 +75,11 @@ Complete when: Every requested meaning maps to one available semantic tool or an
 Complete when: Every high-impact call has fresh confirmation for a named target and scale; all other requested safe work is either complete or reported.
 
 ### 5. Character and asset work
-- Read the Project Character roster before creation. Update an existing match instead of creating a duplicate, and give new Characters proper names. Do not use a 직업·역할어 (job or role label) such as friend, villain, detective, or doctor as a name.
-- Use update_character for identity fields and report only returned changed fields. Put a new Korean display name in name_ko and use name only to identify the current Character when required.
-- Use assign_character for Scene presence, screen position, and the costume worn only in that Scene, and focusSubject for one Cut's visual focus. Confirm a Character deletion by human-readable name; if the name is absent or duplicated, leave every Character intact and ask once.
-- Treat Portrait, Character Plate, Reference Image, and Character Reference Sheet states as returned asset facts. Selection may start downstream paid work, so inspect the Character and confirm immediately before selection.
-- Read characters-and-assets.md whenever creating, editing, deleting, assigning, generating, or selecting Character assets.
+- Read characters-and-assets.md whenever creating, editing, deleting, assigning, generating, or selecting Character assets, including the costume worn only in that Scene. It holds the roster, naming, placement, deletion, and Portrait → Plate selection rules in full.
 Complete when: Every referenced Character resolves to one Project-owned record, every requested placement is explicit, and each requested asset state is proven or pending by returned status.
 
 ### 6. Rule Check
-- Read every Rule Check rejection and warning returned after a mutation. Retry a rejected formal value only with an advertised candidate that still expresses the director's intent.
-- Fix an accidental directing warning. For an intentional exception, show the exact warning and ask whether to continue; never hide or silently normalize it.
-- Before a paid pixel action, inspect the affected Scene or Draft again. If the pixel gate blocks, fix the warning or pass exactly the returned ackKey values through that tool's acknowledgment field after confirmation. An acknowledgment applies to that call only.
-- Read rule-check.md for mutation or paid-pixel details, including rejection candidates and one-call acknowledgments.
+- Read rule-check.md before any mutation or paid pixel action. It holds what to do with a returned rejection or warning, and the one-call acknowledgment that passes a blocking pixel gate.
 Complete when: Every returned rejection or warning is fixed, confirmed for one next call, or visibly pending the director's decision.
 
 ### 7. Image/video Jobs and proven-result reporting
@@ -83,4 +88,5 @@ Complete when: Every returned rejection or warning is fixed, confirmed for one n
 - Report only returned fields, targets, warnings, counts, and statuses. State partial success, skipped targets, failure, unavailable tools, and still-processing work plainly.
 - Poll get_job_status for image and Character-asset Jobs; report completedCutCount out of totalCutCount, which rise one Cut at a time. While phase is prompt nothing is drawn yet — say so, not 0. On failure report the returned error at once and never retry a content_policy_violation unchanged. Poll get_clip_status for one CutClip; list_clips for the Draft's Animatic set.
 - Stop paid work only on the director's request: cancel_job cancels one image or render Job, cancel_animatic with its submissionId cancels that submission's CutClip generations. Report the returned outcome plainly — cancelled, too_late, or already_cancelled — never as a refund or as proof the provider stopped.
+- When you report a stage finished, close that report with one line naming the stage above it and the one thing that stage is still waiting on. Propose it and stop there; the director chooses. Say nothing of the sort after one field edit, one status read, or an answered question — a next step after every call is noise, and this seat has no screen tabs to make it obvious which one it is.
 Complete when: The director can distinguish completed work, failed or partial work, pending decisions, and queued work without inference.
