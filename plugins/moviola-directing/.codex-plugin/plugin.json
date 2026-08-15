@@ -4,10 +4,10 @@
   "description": "Direct MOVIOLA Drafts with the shared Assistant Director manual and canonical Directing Rules.",
   "author": {
     "name": "IXIWORKS",
-    "url": "https://github.com/IXIWORKS-KIMJUNGHO"
+    "url": "https://github.com/creative-enginner"
   },
-  "homepage": "https://github.com/IXIWORKS-KIMJUNGHO/moviola-directing",
-  "repository": "https://github.com/IXIWORKS-KIMJUNGHO/moviola-directing",
+  "homepage": "https://github.com/creative-enginner/moviola-directing",
+  "repository": "https://github.com/creative-enginner/moviola-directing",
   "keywords": ["moviola", "storyboard", "directing", "assistant-director"],
   "skills": "./skills/",
   "interface": {

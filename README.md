@@ -36,7 +36,7 @@ MOVIOLA 웹에서 **설정 → 개인 토큰**으로 이동해 토큰을 발급�
 ### 2. 스킬 설치
 
 ```bash
-npx skills add IXIWORKS-KIMJUNGHO/moviola-directing \
+npx skills add creative-enginner/moviola-directing \
   --skill moviola-directing \
   --global \
   --agent claude-code \
@@ -52,7 +52,7 @@ npx skills add IXIWORKS-KIMJUNGHO/moviola-directing \
 없습니다. 플러그인으로 넣으면 `/plugin` 화면에서 설치 목록과 갱신을 함께 관리할 수 있습니다.
 
 ```
-/plugin marketplace add IXIWORKS-KIMJUNGHO/moviola-directing
+/plugin marketplace add creative-enginner/moviola-directing
 /plugin install moviola-directing@ixiworks-moviola
 ```
 
@@ -97,7 +97,7 @@ Claude Code 안에서는 `/mcp` 명령으로 MOVIOLA 연결 상태와 도구를 
 ### 1. 스킬과 MCP 연결
 
 ```bash
-npx skills add IXIWORKS-KIMJUNGHO/moviola-directing \
+npx skills add creative-enginner/moviola-directing \
   --skill moviola-directing \
   --global \
   --agent codex \
@@ -116,7 +116,7 @@ codex mcp add moviola \
 플러그인을 사용해도 개인 토큰을 위한 MCP 연결은 위에서 한 번 등록해야 합니다.
 
 ```bash
-codex plugin marketplace add IXIWORKS-KIMJUNGHO/moviola-directing --ref main
+codex plugin marketplace add creative-enginner/moviola-directing --ref main
 codex plugin add moviola-directing@ixiworks-moviola
 ```
 
@@ -125,7 +125,7 @@ codex plugin add moviola-directing@ixiworks-moviola
 Claude Code, Cursor, Codex에 스킬을 한꺼번에 설치하려면 다음 명령을 사용합니다.
 
 ```bash
-npx skills add IXIWORKS-KIMJUNGHO/moviola-directing \
+npx skills add creative-enginner/moviola-directing \
   --skill moviola-directing \
   --global \
   --agent claude-code --agent cursor --agent codex \
