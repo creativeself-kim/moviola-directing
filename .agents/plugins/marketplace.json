@@ -1,7 +1,7 @@
 {
-  "name": "ixiworks-moviola",
+  "name": "moviola",
   "interface": {
-    "displayName": "IXIWORKS MOVIOLA"
+    "displayName": "MOVIOLA"
   },
   "plugins": [
     {

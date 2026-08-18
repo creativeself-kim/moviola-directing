@@ -3,7 +3,7 @@
   "version": "2.20.0",
   "description": "Direct MOVIOLA Drafts with the shared Assistant Director manual and canonical Directing Rules.",
   "author": {
-    "name": "IXIWORKS",
+    "name": "MOVIOLA",
     "url": "https://github.com/creativeself-kim"
   },
   "homepage": "https://github.com/creativeself-kim/moviola-directing",
@@ -14,7 +14,7 @@
     "displayName": "MOVIOLA Directing",
     "shortDescription": "Direct MOVIOLA Drafts with one shared manual.",
     "longDescription": "Author, edit, review, and render MOVIOLA Scenes and Cuts through its MCP tools while following the browser-equivalent work manual and canonical Directing Rules.",
-    "developerName": "IXIWORKS",
+    "developerName": "MOVIOLA",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
     "defaultPrompt": [

@@ -53,11 +53,11 @@ npx skills add creativeself-kim/moviola-directing \
 
 ```
 /plugin marketplace add creativeself-kim/moviola-directing
-/plugin install moviola-directing@ixiworks-moviola
+/plugin install moviola-directing@moviola
 ```
 
 두 명령 모두 Claude Code 안에서 실행합니다. 새 판이 나오면
-`/plugin marketplace update ixiworks-moviola`로 목록을 갱신한 뒤 다시 설치합니다.
+`/plugin marketplace update moviola`로 목록을 갱신한 뒤 다시 설치합니다.
 플러그인을 써도 개인 토큰을 위한 MCP 연결은 아래에서 한 번 등록해야 합니다.
 
 ### 3. MOVIOLA 연결
@@ -117,7 +117,7 @@ codex mcp add moviola \
 
 ```bash
 codex plugin marketplace add creativeself-kim/moviola-directing --ref main
-codex plugin add moviola-directing@ixiworks-moviola
+codex plugin add moviola-directing@moviola
 ```
 
 ## 여러 에이전트에 한 번에 설치하기
