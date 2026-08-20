@@ -2,27 +2,27 @@
 
 # Work Folder
 
-- `CLAUDE.md`(없으면 `AGENTS.md`)의 MOVIOLA 블록이 이 자리의 작품 폴더를 가리킨다. 경로는 그 블록에 적힌 자리를 쓴다.
-- 세션 시작에 작품 카드(`moviola/project.md`) **한 장만** 읽는다. 계획 파일 전체를 읽지 마라 — 문맥만 태운다. 서버 것과 어긋났는지는 work-folder-sync.md 가 본다.
-- 씬별 계획은 그 씬을 손대기로 정한 뒤 **그 절만** 연다. `notes/` 는 파일 이름만 훑고, 감독이 가리키거나 왜 필요한지 말한 뒤에 연다.
-- 드래프트를 새로 만들거나 갈아탔으면 작품 카드의 '지금 쓰는 draft_id' 줄만 고친다. 세팅을 다시 돌리라고 하지 마라.
-- 세팅이 없으면 **직접 만들지 마라.** 계획이 필요한 일 — 씬을 새로 짜거나 다시 나누거나, 표본을 옮기거나, 지난 세션을 이어 할 때 — 에서만 한 번 말하고 `moviola-setup` 을 권한다.
-- 컷 한 칸 편집 · 상태 조회 · 질문 답변에는 폴더 이야기를 꺼내지 마라 — 올리는 이야기도 마찬가지다. 폴더가 없는 자리에서는 조용히 넘어간다.
-- 쓰는 때는 **씬 하나 작업이 끝났을 때 그 씬 절 한 번**이다. 편집마다 쓰지 마라.
-- 로컬에 적었으면 **같은 걸음에** 서버에도 올린다 — `put_work_file` 에 작품 카드의 project_id · 폴더 안 상대 경로 · 방금 쓴 파일 **전체**를 준다. 세션 끝에 몰아 올리지 마라: 터미널은 끝났다는 신호 없이 그냥 닫혀서, 몰아 두면 그날 한 일이 통째로 안 올라간다.
-- 그 씬 작업에서 `notes/` 를 고쳤으면 그 파일도 함께 올린다. 안 고친 파일은 다시 올리지 마라. 작품 카드(`project.md`)는 안 올린다 — 서버를 찾아가는 쪽지라 서버가 거절한다.
-- 올리다 실패해도 로컬 작업은 그대로 이어 간다. 어느 파일이 안 올라갔는지 경로로 **한 번 말하고**, 다음 씬을 올릴 때 그 파일부터 같이 올린다. 그 자리에서 되풀이해 다시 걸지 마라.
-- 계획은 드래프트마다 한 장이다 — `moviola/plans/draft-<draft_id 앞 8자>.md`. 없으면 그때 만든다. 옛 이름 `moviola/decisions/` 가 보이면 그게 계획이다 — 직접 옮기지 말고 `moviola-setup` 을 권한다.
-- `moviola/decisions.md` 는 **서버가 만들어 내려주는** 한 장이다 — 결정 메모 전체가 드래프트마다 한 절로 담긴다. 손으로 고치지 말고(다음 세션에 덮인다) 올리지도 마라(서버가 거절한다). 개요가 매 세션 주는 것은 최근 40줄뿐이니, 그보다 앞선 판단을 되짚을 때만 연다.
-- 파일 모양은 **씬마다 한 절**이다. 절 머리는 `## 씬 <scene_id> — <제목> (지금 <n>번째)`, 절 안은 이 씬이 하는 일 · 정한 것 · 표본 대응 · 아직 안 한 것 넷이다.
-- **덧붙여 쓰고, 쓰기 직전에 다시 읽어라.** 같은 작품을 창 두 개에서 열 수 있다 — 통째로 다시 쓰면 다른 창이 방금 적은 것이 사라진다.
-- 확정된 씬의 계획은 결론 두세 줄로 접는다. 결정 메모의 40줄 상한 때문에 태어난 자리가 상한 없는 자리가 되지 않게.
-- 감독이 안을 버리라고 하면 버린 안과 이유를 `notes/` 에 적는다.
-- 표본 대응표는 그 씬 절에 적는다. 편집 이유에는 표본 이름과 대상 비트만 한 줄 남긴다.
-- **서버가 매 세션 주는 값은 적지 마라** — 작품 방향 · 잠긴 컷 · 컷 이미지 주소 · 모델. 씬 본문 · 컷 본문 통째 사본도 낡으니 적지 마라. 적을 것은 값이 아니라 판단이다.
-- 파일 안에서 **씬은 id 로 부른다.** 순번과 제목은 사람이 읽으라고만 병기하고, 지금 개요와 다르면 그 줄만 고친다. 순번으로 매기면 씬을 넣거나 지우거나 옮길 때 서버가 1부터 다시 매겨 어긋나도 티가 안 난다.
-- **베껴 온 값**(씬 제목 · 컷 수 · 순번 · 잠금)이 지금과 다르면 파일을 고친다. 파일에 적힌 것을 근거로 도구 결과를 부정하지 마라.
-- **아직 안 한 계획은 어긋난 게 아니라 남은 일이다.** 지우지 말고 '아직 안 했다'고 말하라 — 로컬 파일에는 복제 같은 되돌림 그릇이 없어 지우면 끝이다.
-- 파일 도구가 없는 자리에서는 폴더 없이 돌고 그 사실을 한 번 말한다. 중요한 판단은 편집 이유에 남긴다.
+- The MOVIOLA block in `CLAUDE.md` (or `AGENTS.md` when there is none) points at the work folder on this machine. Use the location written in that block as the path.
+- At the start of a session read **only the project card** (`moviola/project.md`). Do not read the whole plan file — it only burns context. Whether it diverged from the server's copy is what work-folder-sync.md looks at.
+- Open a Scene's plan **section only** after deciding to touch that Scene. Skim `notes/` by filename alone, and open one only after the director points at it or says why it is needed.
+- After creating or switching to a new Draft, edit only the project card's `'지금 쓰는 draft_id'` line. Do not ask for the setup to be run again.
+- **Do not build the folder yourself** when the setup is missing. Only for work that needs a plan — writing or re-splitting Scenes, carrying a sample over or deciding to go without one, continuing a previous session — say it once and recommend `moviola-setup`.
+- Do not raise the folder for one field edit, a status read, or an answered question — and the same goes for uploading. Where there is no folder, move on without a word.
+- Write **once per finished Scene, into that Scene's section**. Do not write on every edit.
+- Once it is written locally, it goes up to the server **in the same step** — give `put_work_file` the project card's project_id, the path relative to the folder, and the **whole** file you just wrote. Do not batch the uploads to the end of the session: the terminal simply closes with no signal that it finished, so a batch means the whole day's work never goes up.
+- If working that Scene changed a file under `notes/`, upload it too. Do not re-upload a file you did not change. The project card (`project.md`) does not go up — it is the note that finds the server, and the server refuses it.
+- A failed upload never stops the local work. Name by path **once** which file did not go up, and send that file first alongside the next Scene's. Do not retry it in a loop on the spot.
+- There is one plan per Draft — `moviola/plans/draft-<draft_id 앞 8자>.md`. Create it then if it is missing. The old name `moviola/decisions/` is that plan when you see it — do not move it yourself; recommend `moviola-setup`.
+- `moviola/decisions.md` is one page the **server makes and hands down** — the whole Decision Memo, one section per Draft. Do not hand-edit it (the next session overwrites it) and do not upload it (the server refuses it). The outline hands over only the last 40 lines each session, so open it only to recover a judgment older than that.
+- The file's shape is **one section per Scene**. The section heading is `## 씬 <scene_id> — <제목> (지금 <n>번째)`, and inside it are four slots — `이 씬이 하는 일` · `정한 것` · `표본 대응` · `아직 안 한 것`. Those literals stay as `moviola-setup` writes them.
+- **Append, and re-read immediately before writing.** The same work can be open in two windows — rewriting the whole file loses what the other window just wrote.
+- Fold a settled Scene's plan down to two or three lines of conclusion, so the place that exists because the Decision Memo caps at 40 lines does not become the place with no cap.
+- When the director drops an idea, write the dropped idea and the reason into `notes/`.
+- A sample's mapping table goes into that Scene's section. **When the decision was to go without a sample, leave that judgment in the same slot in one line** — write what it was decided against, or the next session asks again. Re-splitting that Scene's Cuts expires the earlier judgment: it was said about a different rhythm. The edit reason keeps one line with the sample name and the target beat only.
+- **Do not write down what the server hands over every session** — Work Direction, locked Cuts, Cut image addresses, the model. A whole copy of the Scene or Cut text goes stale too, so do not write that either. What belongs here is the judgment, not the value.
+- Inside the file, **call a Scene by its id.** Carry the order and title beside it for a human reader only, and correct just that line when it differs from the current outline. Numbering by order hides drift, because the server renumbers from 1 whenever a Scene is added, deleted, or moved.
+- When a **copied value** — a Scene title, a Cut count, an order, a lock — differs from the current one, correct the file. Do not use what the file says to deny a tool result.
+- **A plan not yet carried out is remaining work, not drift.** Do not delete it; say it has not been done yet — a local file has no rollback container the way a duplicate Draft is one, so a deletion is final.
+- Where there are no file tools, run without the folder and say so once. Leave the judgments that matter in the edit reasons.
 
 Complete when: Either the work folder was found and its project card read, or its absence was stated once. Every plan section read or written belongs to a Scene actually being touched, was appended after a fresh read, and names that Scene by id; a stale copied value was corrected while a plan not yet carried out was reported as remaining rather than deleted. Every finished Scene's plan reached the server in the same step it reached the local file—once for that Scene rather than once per edit, carrying the whole file and any note changed for it—or the upload failure was named by path once while local work continued. The server-made decisions.md was neither hand-edited nor uploaded, and was opened only to recover a judgment older than the briefing carries.

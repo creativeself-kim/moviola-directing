@@ -2,12 +2,12 @@
 
 # Shot Design
 
-- 감정·서사 의도 → 시각 촬영 설계 → 컴포넌트 간 일관성. 예: 고립감→High Angle+CU+Negative Space+Low Key, 대립→커버리지로 돌리기(투샷 + 어깨너머 OTS + 반대편 리버스 싱글 + 시점 POV/반응 싱글), 서정→WS+Leading Lines+Golden Hour.
-- 공간 연속성: character_positions(좌/우)를 180도 축으로 삼아 카메라를 돌리되 그 선의 한쪽을 유지(인물의 화면 좌우가 컷마다 일관). OTS→focusSubject=대면 인물(얼굴 보이는 쪽), POV→focusSubject=시점 소유자, Reaction→focusSubject=반응 인물.
-- 시각 다양성 권장(강제 X) — 2인+ 씬은 줌(shotSize)뿐 아니라 카메라 위치(shotType)를 돌려라: 정면 투샷에만 머물지 말고 어깨너머(OTS)·반대편 리버스 싱글·시점(POV)·반응 싱글로 '카메라가 인물 둘레를 돈' 커버리지를 만든다. 예외: 잔잔한 talking head 대화는 Eye Level CU/MCU 반복이 정통이라 통일성 우선. 컷 description 의 프레이밍 단어(정면·마주 선 구도)는 참고일 뿐 — shotType·cameraAngle 은 비트·커버리지에 맞게 네가 정한다.
-- cameraMovement — action 의 동세·정서 변화를 무빙으로 살려라(매번 Static 으로 도망치지 말 것): 이동·추격→Tracking, 물러남·해소→Dolly Out, 격투·혼란·불안→Handheld, 공간 훑기·조망→Pan. 거리 좁힘·긴장 고조·발견·다가섬과 높이·수직은 Static 으로 간다 — Dolly In·Crane·Tilt 를 이 모델이 못 낸다(네 판 다 정지). 후보엔 남지만 먼저 고르지 마라. 무게는 durationSeconds 를 위쪽으로 주고, 다른 무빙으로 갈아 달지 마라. 단 정물·관조·안정된 talking head·고정 포즈는 Static 이 정통 — 정적인 컷에 억지 무빙 남발 금지.
-- 컷 길이(초, 3~15). 비트 호흡으로 — 인서트·리액션 3~4, 보통 4~5, 머무는 감정·설정 와이드 6~8.
-- 브리핑의 usedShotSizes 를 보고 같은 샷 반복·EST 중복을 피하라.
-- 샷마다 focusSubject로 카메라가 실제 바라볼 한 인물·물체를 골라라.
+- Emotional and narrative intent → visual shooting design → coherence between the components. For example: isolation→High Angle+CU+Negative Space+Low Key, confrontation→turn it into coverage (two shot + over-the-shoulder OTS + the opposite reverse single + POV/reaction single), lyricism→WS+Leading Lines+Golden Hour.
+- Spatial continuity: take character_positions (left/right) as the 180-degree axis and move the camera while staying on one side of that line, so each person keeps the same screen side from Cut to Cut. OTS→focusSubject=the person faced (the one whose face shows), POV→focusSubject=whoever owns the view, Reaction→focusSubject=the person reacting.
+- Visual variety is recommended, not forced — in a Scene with two or more people, turn the camera position (shotType) as well as the zoom (shotSize): do not sit on the frontal two shot, but build coverage that walks the camera around them with over-the-shoulder (OTS), the opposite reverse single, POV, and the reaction single. Exception: a quiet talking-head exchange is classically a repeated Eye Level CU/MCU, so uniformity wins there. A framing word in the Cut description, such as a frontal or face-to-face composition, is only a hint — you choose shotType and cameraAngle to fit the beat and the coverage.
+- cameraMovement — carry the movement and the shift of feeling in the action with the camera; do not retreat to Static every time: travel or chase→Tracking, withdrawal or release→Dolly Out, a fight, confusion, or unease→Handheld, sweeping or surveying a space→Pan. Closing distance, rising tension, discovery, moving in, and anything vertical go to Static — this model cannot render Dolly In, Crane, or Tilt (still in all four runs). They stay among the advertised options, but do not reach for them first. Carry the weight by giving durationSeconds the upper end of its range, and do not swap in a different movement instead. Still life, contemplation, a settled talking head, and a held pose are classically Static — do not force movement onto a still Cut.
+- Cut length (seconds, 3–15). Let the beat pace it — insert or reaction 3–4, ordinary 4–5, a lingering emotion or an establishing wide 6–8.
+- Read usedShotSizes in the briefing and avoid repeating the same shot or a second EST.
+- For every shot, pick with focusSubject the one person or object the camera actually looks at.
 
 Complete when: Every Cut has an intentional, spatially coherent shot spec whose coverage, movement, focus, and duration serve its dramatic beat without needless repetition.

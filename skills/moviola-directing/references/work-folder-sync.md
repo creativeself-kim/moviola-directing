@@ -2,15 +2,15 @@
 
 # Work Folder Sync
 
-- 세션 시작에 **한 번만** 견준다. `list_work_files` 로 서버의 경로 · 해시를 받고, 로컬 `plans/` · `notes/` 의 `.md` 는 sha256 을 잰다(`shasum -a 256`). **내용은 안 받는다** — 해시만 견준다. 해시를 잴 손이 없는 자리면 견주기를 건너뛰고 조용히 넘어간다.
-- **해시가 같은 파일은 아무것도 하지 마라.** 대부분이 여기다 — 받지도 올리지도 말고 말도 꺼내지 마라.
-- 마지막으로 두 자리가 같았던 때의 해시는 `moviola/.synced.md` 가 든다 — `| 경로 | 해시 |` 표 한 장이다. `project.md` 처럼 **로컬 것이라 서버에 안 올라간다.** 견주기가 끝나면 그때 로컬 파일의 해시로 다시 쓴다.
-- 해시가 다른 파일은 그 표시로 셋이 갈린다. **로컬만** 표시와 다르면 감독의 손편집이니 `put_work_file` 로 올린다. **서버만** 다르면 다른 기기에서 한 일이니 `get_work_file` 로 받아 글자 그대로 덮는다. 이 둘은 **말없이** 한다.
-- **둘 다 표시와 다르면 말한다.** 서버 것으로 맞추고, 어느 파일이 어긋났고 로컬 것이 어디 남았는지 경로로 말한다. 조용히 덮는 것과 조용히 낡은 것으로 일하는 것은 둘 다 나중에 알아채기 어렵다 — 다르다는 사실만 말하면 둘 다 막힌다.
-- **서버 것으로 덮기 전에, 로컬이 표시와 다르면 언제나 `<경로>.local` 로 한 벌 남긴다** — 로컬엔 복제 같은 되돌림 그릇이 없어 덮으면 끝이다. 그 자리에 이미 남긴 것이 있으면 덮지 말고 `.local2` · `.local3` 으로 붙인다.
-- **표시에 그 경로 줄이 없거나 표시를 못 읽으면 충돌이 아니다** — 처음 붙는 자리다. 서버에 있으면 받고 로컬에만 있으면 올린다. 감독에게 묻지 마라. 표시 파일을 지우지 말고 견주기 끝에 새로 쓴다.
-- 로컬에 없는 파일을 **지운 것으로 치지 마라** — 서버에 있으면 받아 온다. 작품 폴더에는 지우는 손이 없다.
-- `decisions.md` 는 이 규칙을 안 탄다 — 서버가 만들어 내려주는 파일이라 늘 서버가 이긴다. 목록에 있고 로컬 것과 해시가 다르면 `get_work_file` 로 받아 **말없이 덮는다** — 로컬 것을 옆에 남기지도, 표시에도 적지 않는다. `project.md` 와 `.synced.md` 는 서버에 없으니 견주지 않는다.
-- **어긋난 것이 없으면 이 걸음 이야기를 한 마디도 하지 마라** — 받았다 · 올렸다도 말하지 마라. 대부분의 세션이 여기다.
+- Compare **once only**, at the start of the session. Take the server's paths and hashes with `list_work_files`, and measure sha256 (`shasum -a 256`) on the local `.md` files under `plans/` and `notes/`. **Do not fetch any content** — only the hashes are compared. Where there is no hand to measure a hash, skip the comparison and move on without a word.
+- **Do nothing at all to a file whose hashes already agree.** Most of them are here — do not fetch it, do not upload it, and say nothing of it.
+- The hashes from the last time the two sides agreed are held by `moviola/.synced.md`, the marker — one `| path | hash |` table. Like `project.md`, **it is local and never goes up to the server.** Rewrite it from the local files' hashes once the comparison is done.
+- A file whose hashes differ splits three ways against that marker. If **only the local side** differs from the marker it is the director's hand-edit, so upload it with `put_work_file`. If **only the server side** differs it was done on another machine, so fetch it with `get_work_file` and overwrite letter for letter. Both of these happen **silently**.
+- **Say it when both sides differ from the marker.** Settle on the server's version, then name by path which file diverged and where the local one was kept. Overwriting silently and working silently from a stale copy are both hard to notice later — saying only that they differ blocks both.
+- **Before the server's version overwrites anything, whenever the local side differs from the marker, always keep one copy at `<path>.local`** — the local side has no rollback container the way a duplicate Draft is one, so an overwrite is final. If a copy is already sitting there, do not overwrite it: append `.local2`, then `.local3`.
+- **It is not a conflict when the marker has no line for that path, or the marker cannot be read** — that is a first attachment. Fetch it if it is on the server, upload it if it is only local. Do not ask the director. Do not delete the marker; rewrite it at the end of the comparison.
+- **Do not treat a file missing locally as deleted** — fetch it if the server has it. The work folder has no hand that deletes.
+- `decisions.md` does not ride this rule — the server makes it and hands it down, so the server always wins. When it is in the listing and its hash differs from the local one, fetch it with `get_work_file` and **overwrite it silently** — no copy kept beside it, and no line about it in the marker. `project.md` and `.synced.md` are not on the server, so they are not compared.
+- **When nothing diverged, say not one word about this step** — not that you fetched, not that you uploaded. Most sessions are here.
 
 Complete when: Either the local work folder was compared against the server exactly once at session start, or there was nothing to compare and nothing was said. Every path whose hashes already agreed was left untouched and unmentioned, every one-sided change moved in its own direction silently, and every two-sided change was named by path after the local copy was kept beside it and the server's version won. A missing or unreadable marker was treated as a first attachment rather than a conflict and was rewritten rather than deleted, and decisions.md never entered the comparison but was overwritten from the server, silently and without a copy kept beside it, whenever the two sides differed.

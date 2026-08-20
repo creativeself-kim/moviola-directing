@@ -7,7 +7,7 @@ description: Direct MOVIOLA projects through MOVIOLA MCP tools. Use when Claude 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `2.20`: send this exact value as `skill_version` in every `get_draft_outline` call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `3.1.0`: send this exact value as `skill_version` in every `get_draft_outline` call. The server's current Rule Check remains authoritative.
 
 ## Run the directing loop
 
@@ -24,7 +24,7 @@ Complete when: The director can tell what is advice, what was requested, and wha
 - When a requested Cut number does not exist, report the actual Cut count and resolve the target; never widen the request silently to the whole Scene.
 - For a cheap reversible edit with one reasonable interpretation, state the assumption and proceed. Ask before a destructive, paid, or genuinely ambiguous action. State the scale before several creations and use bounded batches for excessive requests.
 - Reconstruct context explicitly with the relevant readers: list_projects, list_drafts, get_draft_outline, list_characters, get_character, and get_scene. Read only the target branches the task needs. State the selected human-readable names and keep returned project_id and draft_id values explicit.
-- 작품 폴더가 있으면(`CLAUDE.md` 의 MOVIOLA 블록이 가리킨다) 세션 시작에 작품 카드 한 장만 읽어 지난 판단 위에서 이어 간다. 없으면 직접 만들지 마라 — 읽고 쓰는 때는 work-folder.md 에 있다.
+- Where there is a work folder (the MOVIOLA block in `CLAUDE.md` points at it), open the project card alone at session start and carry on from the judgments already made. Where there is none, do not set one up yourself — when to read and write is in work-folder.md.
 Complete when: One Project, one Draft, and every affected Scene, Cut, or Character are identified by returned IDs, or one focused clarification is pending.
 
 ### Load only the selected task branch
@@ -34,17 +34,19 @@ Read every reference selected below before acting:
 - **Create, edit, assign, delete, generate, or select Character assets**: [characters-and-assets.md](references/characters-and-assets.md).
 - **Inspect a board or generate its first Sketch images**: [storyboards.md](references/storyboards.md).
 - **Rerender a Cut or board, or finalize Sketches into color**: [renders.md](references/renders.md).
+- **Change a Scene's colour, the strength, or the work's anchor painting**: [color.md](references/color.md).
 - **Edit motion intent, or generate, review, or cancel CutClip video**: [animatics.md](references/animatics.md).
 - **Review or critique without mutating the Draft**: [review.md](references/review.md).
 - **Perform any mutation or paid pixel action**: [rule-check.md](references/rule-check.md).
 - **Choose shot specs for Cuts**: [shot-design.md](references/shot-design.md).
-- **Use another film's cut rhythm — a Scene that needs a rhythm recommendation, an exact film and sequence, a feeling/intent/condition/comparison, or an unprompted Scene re-split**: [directing-samples.md](references/directing-samples.md).
+- **Use another film's cut rhythm — a Scene that needs a rhythm recommendation, an exact film and sequence, a feeling/intent/condition/comparison, or an unprompted Scene split or re-split**: [directing-samples.md](references/directing-samples.md).
 - **Author, edit, or review visual direction**: also read [directing-rules.md](references/directing-rules.md).
 - **A genre is established by the Draft briefing or director**: read exactly its guide—[drama](references/genre-drama.md), [action](references/genre-action.md), [thriller](references/genre-thriller.md), [romance](references/genre-romance.md), [horror](references/genre-horror.md), [comedy](references/genre-comedy.md), [fantasy](references/genre-fantasy.md), or [period drama](references/genre-period.md). Ask before committing to genre-specific rhythm only when neither source establishes one.
 Complete when: every reference required by the chosen branch—and no unrelated genre guide—has been read.
 
 ### Locate the Draft on the pipeline
-Stages run in this order: Scene and Cut writing → Character assets (Portrait, then Plate) → Storyboard Sketches → color finalization → Animatic clips → review. A stage opens only once the one before it closes for the Scenes at hand:
+Stages run in this order: Scene and Cut writing → Scene Rhythm Cast → Character assets (Portrait, then Plate) → Storyboard Sketches → color finalization → Animatic clips → review. A stage opens only once the one before it closes for the Scenes at hand:
+- Scene Rhythm Cast (directing-samples.md): opens once a Scene carries Cuts, and closes only on the director's word — one candidate chosen, or the sample declined. Returned state never closes this one, and one director's word closes only the Scene it was said about.
 - Character assets: opens once anyone stands in a Scene, closes when each of them carries a chosen Portrait and Plate. Cuts drawn earlier hand one person a different face.
 - Storyboard Sketches: those assets closed, and Cut text and shot specs settled.
 - Color finalization: Sketches nobody still wants to retake, because a Cut corrected after this point is paid for twice.
@@ -52,7 +54,7 @@ Stages run in this order: Scene and Cut writing → Character assets (Portrait, 
 - Review: clips returned complete, which count as generated rather than seen until something describes them.
 - A stage belongs to a Scene, not to the Draft — one Draft sits at review for its first Scene and at writing for its fifth. Place the work by reading the outline and the roster.
 - Name the Scenes you mean and the one thing the stage above is waiting on. The next arrow, recited without reading state, is not a proposal.
-Complete when: The reported work sits on one named stage, and the stage above it is either open or named together with what it waits on, taken from returned state rather than assumed.
+Complete when: The reported work sits on one named stage, and the stage above it is either open or named together with what it waits on, taken from returned state — or, for Scene Rhythm Cast, from the director's own answer — rather than assumed.
 
 ### 3. Semantic tool routing
 - Keep an opinion, evaluation, or idea request read-only. When the director asks for alternatives, separate the proposal from any later edit or paid rerender.
@@ -63,6 +65,7 @@ Complete when: The reported work sits on one named stage, and the stage above it
 - Use dedicated add, delete, move, duplicate, and update tools. Preserve returned Scene and Cut identifiers and use only values advertised by the current schema.
 - Use regenerate_cut once for one existing Cut and regenerate_board once for a whole-board request. Update semantic fields before requesting a rerender. Keep Storyboard and Animatic values in their dedicated fields.
 - Pass sceneIds to generate_storyboard, regenerate_board, or finalize_render for a partial-Scene request, and state those Scenes' Cut count as the paid scale. finalize_render narrows one step further with cutIds for a Cut-level request.
+- Use list_color_samples to read the painting samples, set_scene_color to put a sample and strength on several named Scenes in one call, and set_project_color_anchor for the work's anchor painting. Colour is computed on top of the Final Render, so none of them re-bakes a pixel.
 - Include a concise reason with every mutation that accepts it so the Decision Memo records why the work changed.
 - Use the terminal model's own brain for authoring, shot choices, and creative review. The terminal seat does not borrow MOVIOLA's create_scenario, ai_shot, ai_shot_all, advise, or revision_proposal models.
 Complete when: Every requested meaning maps to one available semantic tool or an honestly reported limitation, with no invented signature or widened scope.

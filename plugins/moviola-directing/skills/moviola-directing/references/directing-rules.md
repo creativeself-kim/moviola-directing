@@ -2,16 +2,16 @@
 
 # Canonical Directing Rules
 
-Use skill version `2.20` in every `get_draft_outline` call.
+Use skill version `3.1.0` in every `get_draft_outline` call.
 
 ## Cut splitting flow
 
-컷 분할 흐름: Establishing → Development → Emphasis → Resolution. 연속 동작 1컷 유지, 분위기 유지 순간은 길게, 대사 교차 편집은 2-3회 이내.
+Cut splitting flow: Establishing → Development → Emphasis → Resolution. Keep one continuous action in one Cut, hold a mood-sustaining moment longer, and keep dialogue cross-cutting to 2–3 exchanges.
 
 ## Shot grammar
 
-shotSize × lensType 물리 호환: Wide 렌즈→Wide/EST shot, Tele/Macro→CU/ECU. shotSize × cameraAngle 의도 정합: CU 에 Bird's Eye 금지.
+shotSize × lensType physical compatibility: a Wide lens→Wide/EST shot, Tele/Macro→CU/ECU. shotSize × cameraAngle intent match: no Bird's Eye on a CU.
 
-Establishing Shot 4 조건 — (a) 새 location, (b) 시간 점프, (c) 외부·대규모 공간, (d) 감정 리셋 중 1개 이상 충족 시에만. 씬당 최대 1회, cutIndex=0 우선. 조건 미충족 시 plot beat 에 맞는 Full/Long/Group/Medium 등 선택.
+Establishing Shot, 4 conditions — only when at least one of (a) a new location, (b) a time jump, (c) an exterior or large-scale space, (d) an emotional reset is met. At most once per Scene, cutIndex=0 preferred. When none is met, choose Full/Long/Group/Medium to fit the plot beat.
 
 Complete when: every authored or reviewed Cut has a deliberate dramatic function, physically coherent shot grammar, and continuity with adjacent Cuts.

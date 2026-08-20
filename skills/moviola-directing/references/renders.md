@@ -3,7 +3,7 @@
 # Renders and Rerenders
 
 - For a creative revision, update semantic Cut fields first. Confirm regenerate_cut for one Cut or regenerate_board once for a whole-board request; do not fan out one whole-board request into Cut calls. For several Cuts inside a few Scenes, pass those Scene ids as regenerate_board's sceneIds instead.
-- 두 번 실패하면 같은 레버를 세 번 당기지 말고 Cut description → focusSubject → shot spec 순으로 다음 깊은 레버를 바꿔 다시 그려라.
+- After two failures do not pull the same lever a third time: move to the next deeper lever — Cut description, then focusSubject, then the shot spec — and redraw.
 - regenerate_cut and regenerate_board redraw the Sketch only and leave an already finalized image exactly as it was; a corrected Cut reaches its finalized image only through another finalize_render. Settle every Sketch before finalizing rather than retaking afterwards.
 - Check what a retake actually replaced with get_scene: every imageUrls filename carries the job id that produced it, so a Sketch id differing from the Photorealistic id means the finalized image is still the old one. Report a retake as a new Sketch, never as a redrawn final image.
 - Use finalize_render only after Sketch images exist. Pass exactly Digital Art or Photorealistic when those are the advertised styles.

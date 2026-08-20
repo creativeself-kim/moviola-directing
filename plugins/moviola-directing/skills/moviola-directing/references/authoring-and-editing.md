@@ -4,20 +4,21 @@
 
 - For a whole story from an empty Draft, establish a one-sentence concept and causal Scene flow, state the intended Scene count, then create each Scene with complete planned Cuts in one add_scene call. Persist the requested Draft; do not stop at prose.
 - Establish recurring principal Characters before the full story and include existing Character references and explicit screen positions in add_scene when the schema supports them.
-- 인물 이름은 시대·장르에 맞게 짓고, 흔한 기본값('준호'·'지은') 금지.
-- 초기 position: 2인 대화는 먼저 말하는 사람 screen_left, 1인은 center.
+- Name people to fit the period and the genre; the common defaults ('준호' · '지은') are forbidden.
+- Initial position: in a two-person exchange the one who speaks first is screen_left; one person alone is center.
 - Use 5–8 Scenes, 3–6 Cuts per Scene, and at most 40 Cuts as short-film defaults rather than hard limits. Follow a requested scale while staging an excessive request in bounded batches.
 - Fill available location, description, timeOfDay, weather, mood, characters, and cuts in add_scene. Infer one cheap missing detail from established story context and state the assumption.
 - Use update_scene for later location, timeOfDay, weather, mood, or description changes so existing Cuts and Character placements remain intact.
 - When the director states or corrects the overall direction, persist it with set_work_direction; it replaces the Work Direction that later briefings echo, keeps other Draft memory, and an empty string clears it.
 - Use set_cut_lock with cutIds to lock or unlock several Cuts in one call. A locked Cut refuses edits and regeneration until unlocked; if any listed Cut is missing, no lock changes.
 - Write concrete visual Cut descriptions with visible people, actions, props, and spatial relations. Put shot size, angle, lens, composition, movement, duration, transition, and Beat only in dedicated fields.
-- 컷 설명은 '없다·않는다'로 빼야 할 것을 나열하지 말고, 대신 화면에 들어갈 구체적 물체·동작·방향을 써라.
-- 한 씬의 컷 설명은 시간이 흐르게 이어 써라 — 그 컷이 시작하는 순간으로 쓰고, 소품과 인물 사이 거리를 컷마다 잇는다. 어떻게 잇는지는 time-continuity.md 에 있다.
-- 인물 없는 와이드는 어긋나기 쉬우므로 사람을 전경에 세우고 문제의 대상을 배경으로 밀어라.
-- focusSubject가 화면 전체를 지배하므로 추상적 개념으로 쓰지 말고, 화면에 보여야 할 구체적 물체로 적어라.
-- 각도·자세·표정은 글로 쓰는 칸에서 이름이나 수치로 부르지 말고 화면에 무엇이 보이는지로 적어라 — '45도 돌린 얼굴'이 아니라 '코끝이 오른쪽 가장자리를 향하고, 오른쪽 귀가 다 보이고, 어깨가 사선으로 눕는다'. 수치가 안 먹을 때 같은 수치를 다시 쓰지 말고 보이는 것으로 바꿔 써라.
+- Do not write a Cut description as a list of what to leave out ('there is no…', 'does not…'); write the concrete objects, actions, and directions that go into the frame instead.
+- Write a Scene's Cut descriptions so time runs through them — write each at the instant that Cut begins, and carry the props and the distance between people from Cut to Cut. How to join them is in time-continuity.md.
+- A wide with nobody in it drifts easily, so stand a person in the foreground and push the object in question into the background.
+- focusSubject dominates the whole frame, so do not write it as an abstract idea: write the concrete object that has to be visible.
+- In a written field, do not call an angle, a pose, or an expression by a name or a number: write what is visible on screen — not 'a face turned 45 degrees' but 'the tip of the nose points at the right edge, the whole right ear shows, and the shoulders lie diagonally'. When a number does not take, do not write the same number again; write it again as what is seen.
 - Maintain Character identity, costume, props, screen position, and the 180-degree screen axis unless the work establishes a deliberate change.
 - When the director declares a supported genre, call set_draft_genre if available, refresh the briefing, and read exactly the matching genre guide.
+- When a Scene first carries Cuts — a new add_scene, or a re-split that replaces the ones it had — read directing-samples.md and take Scene Rhythm Cast for that Scene before reporting the split settled, even when the director has never named a film. Editing one existing Cut's fields, or changing a Scene's own location, timeOfDay, weather, mood, or description, is not a split and leaves that stage closed. When one request created several Scenes at once, take the stage for the Scene the director turns to next rather than for the whole batch.
 
-Complete when: Every requested Scene exists with its intended complete Cuts and Character placements, every returned identifier is preserved, and every rejected value is reported or corrected from advertised candidates.
+Complete when: Every requested Scene exists with its intended complete Cuts and Character placements, every returned identifier is preserved, and every rejected value is reported or corrected from advertised candidates. A Scene whose Cuts were just written or re-split names Scene Rhythm Cast as the stage it now sits on, taken or declined, and no single-field edit dragged that stage open.
