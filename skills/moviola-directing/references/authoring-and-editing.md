@@ -10,7 +10,7 @@
 - Fill available location, description, timeOfDay, weather, mood, characters, and cuts in add_scene. Infer one cheap missing detail from established story context and state the assumption.
 - Use update_scene for later location, timeOfDay, weather, mood, or description changes so existing Cuts and Character placements remain intact.
 - When the director states or corrects the overall direction, persist it with set_work_direction; it replaces the Work Direction that later briefings echo, keeps other Draft memory, and an empty string clears it.
-- Use set_cut_lock with cutIds to lock or unlock several Cuts in one call. A locked Cut refuses edits and regeneration until unlocked; if any listed Cut is missing, no lock changes.
+- Use set_cut_lock with cutIds to lock or unlock several Cuts in one call. A locked Cut refuses edits, regeneration, deletion, moving, and duplication until unlocked — the lock guards the Cut itself, not its order number, so moving or duplicating a different Cut past it still works; if any listed Cut is missing, no lock changes.
 - Write concrete visual Cut descriptions with visible people, actions, props, and spatial relations. Put shot size, angle, lens, composition, movement, duration, transition, and Beat only in dedicated fields.
 - Do not write a Cut description as a list of what to leave out ('there is no…', 'does not…'); write the concrete objects, actions, and directions that go into the frame instead.
 - Write a Scene's Cut descriptions so time runs through them — write each at the instant that Cut begins, and carry the props and the distance between people from Cut to Cut. How to join them is in time-continuity.md.
