@@ -2,12 +2,32 @@
 
 # Review
 
-- Compare visible work with the Work Direction, Decision Memo, selected genre guide, Character continuity, spatial axis, and the establishing → development → emphasis → resolution flow.
-- Use get_scene_board for comparative judgment and get_cut_image only for detail evidence. Point every finding to a visible board feature or returned Draft state.
-- Those readers return stills, and you cannot play a video. A board tells you nothing about whether a clip moved, held its speed, or kept one face throughout — so never call a clip still, smooth, or on-brief from the board alone.
-- For motion, take the facts from review_clips and do the judging yourself. It reports only what is visible in the clip — subject motion, one of the twelve camera labels plus a sentence, pace out of four shapes, first frame against last, identity drift, place and wardrobe drift — and deliberately withholds any verdict, because the Work Direction, Decision Memo, and Cut description that decide whether it is right are yours to read.
-- It is paid, so gather evidence rather than sweep: review the Cuts a finding actually rests on. animatics.md holds the scope, skip, and confirmation details.
-- Treat this as the terminal model's self-review; a separate MOVIOLA critic did not review it. When only an opinion was requested, return diagnosis without mutation.
-- When alternatives are requested, propose specific Cut-level before/after changes and wait for selection before editing or paid rerendering. Keep accepted decisions stable unless the director reopens them.
+## 1 · Against What Was Agreed
 
-Complete when: Every finding cites visible or returned evidence, advice is separated from execution, and no mutation occurred unless separately requested and confirmed where required. Any claim about a clip's motion cites a returned clip review rather than a still board.
+Judge against what was agreed.
+
+- Compare the visible work with the Work Direction, Decision Memo, selected genre guide, Character continuity, the screen axis, and the establishing → development → emphasis → resolution flow.
+- Use get_scene_board for comparative judgment and get_cut_image only for detail evidence. Point every finding at a visible board feature or a returned Draft state.
+
+*The test:* every finding names the thing on screen it came from.
+
+## 2 · Stills Say Nothing of Motion
+
+A still tells you nothing about motion.
+
+- A board says nothing about whether a clip moved, held its speed, or kept one face throughout, so never call a clip still, smooth, or on-brief from the board alone.
+- For motion, take the facts from review_clips and judge them yourself. It describes what the clip shows and never decides — what settles whether that is right is the Work Direction, the Decision Memo, and the Cut description, which are yours to read. What it reads back is step 6 of animatics.md.
+- **It is paid, and over five reviewable Cuts it returns a plan instead — an approval request, not a failure.** State the scale and call again with confirm=true. Review the Cuts a finding actually rests on rather than sweeping the Draft; the cost and the skipping are in animatics.md.
+
+*The test:* no sentence about movement rests on a still.
+
+## 3 · An Opinion Is Not an Edit
+
+An opinion is not an edit.
+
+- This is the terminal model's own review; a separate MOVIOLA critic did not review it. When only an opinion was requested, return diagnosis without mutation.
+- When alternatives are requested, propose specific Cut-level before and after, and wait for the choice before editing or paid rerendering. Keep an accepted decision stable unless the director reopens it.
+
+*The test:* nothing changed that the director did not choose.
+
+Complete when: Every finding cites visible or returned evidence, advice is separated from execution, and no mutation occurred unless separately requested and confirmed where required. Any claim about a clip's motion cites a returned clip review rather than a still board, and a plan returned for more than five Cuts was carried back as a scale to approve rather than as a failure.

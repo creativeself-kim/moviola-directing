@@ -2,15 +2,33 @@
 
 # Work Folder Sync
 
+## 1 · Hash, Not Content
+
+Compare by hash, not by content.
+
 - Compare **once only**, at the start of the session. Take the server's paths and hashes with `list_work_files`, and measure sha256 (`shasum -a 256`) on the local `.md` files under `plans/` and `notes/`. **Do not fetch any content** — only the hashes are compared. Where there is no hand to measure a hash, skip the comparison and move on without a word.
+- The hashes from the last time the two sides agreed are held by `moviola/.synced.md`, the marker — one `| path | hash |` table. Like `project.md`, **it is local and never goes up to the server.** Rewrite it from the local files' hashes once the comparison is done. **It is not a conflict when the marker has no line for that path, or the marker cannot be read** — that is a first attachment. Fetch it if it is on the server, upload it if it is only local. Do not ask the director. Do not delete the marker; rewrite it at the end of the comparison.
+
+*The test:* you read hashes, not files, and you did it once.
+
+## 2 · One Side Moves Silently
+
+A one-sided change moves in its own direction, silently.
+
 - **Do nothing at all to a file whose hashes already agree.** Most of them are here — do not fetch it, do not upload it, and say nothing of it.
-- The hashes from the last time the two sides agreed are held by `moviola/.synced.md`, the marker — one `| path | hash |` table. Like `project.md`, **it is local and never goes up to the server.** Rewrite it from the local files' hashes once the comparison is done.
-- A file whose hashes differ splits three ways against that marker. If **only the local side** differs from the marker it is the director's hand-edit, so upload it with `put_work_file`. If **only the server side** differs it was done on another machine, so fetch it with `get_work_file` and overwrite letter for letter. Both of these happen **silently**.
+- A file whose hashes differ **splits three ways** against that marker. If **only the local side** differs from the marker it is the director's hand-edit, so upload it with `put_work_file`. If **only the server side** differs it was done on another machine, so fetch it with `get_work_file` and overwrite letter for letter. Both of these happen **silently**.
+- `decisions.md` does not ride this rule — the server makes it and hands it down, so the server always wins. When it is in the listing and its hash differs from the local one, fetch it with `get_work_file` and **overwrite it silently** — no copy kept beside it, and no line about it in the marker. `project.md` and `.synced.md` are not on the server, so they are not compared. **Do not treat a file missing locally as deleted** — fetch it if the server has it. The work folder has no hand that deletes.
+- **When nothing diverged, say not one word about this step** — not that you fetched, not that you uploaded. Most sessions are here.
+
+*The test:* the director heard nothing, because nothing needed a decision.
+
+## 3 · Two Sides, Say It
+
+A two-sided change is the only thing worth saying out loud.
+
 - **Say it when both sides differ from the marker.** Settle on the server's version, then name by path which file diverged and where the local one was kept. Overwriting silently and working silently from a stale copy are both hard to notice later — saying only that they differ blocks both.
 - **Before the server's version overwrites anything, whenever the local side differs from the marker, always keep one copy at `<path>.local`** — the local side has no rollback container the way a duplicate Draft is one, so an overwrite is final. If a copy is already sitting there, do not overwrite it: append `.local2`, then `.local3`.
-- **It is not a conflict when the marker has no line for that path, or the marker cannot be read** — that is a first attachment. Fetch it if it is on the server, upload it if it is only local. Do not ask the director. Do not delete the marker; rewrite it at the end of the comparison.
-- **Do not treat a file missing locally as deleted** — fetch it if the server has it. The work folder has no hand that deletes.
-- `decisions.md` does not ride this rule — the server makes it and hands it down, so the server always wins. When it is in the listing and its hash differs from the local one, fetch it with `get_work_file` and **overwrite it silently** — no copy kept beside it, and no line about it in the marker. `project.md` and `.synced.md` are not on the server, so they are not compared.
-- **When nothing diverged, say not one word about this step** — not that you fetched, not that you uploaded. Most sessions are here.
+
+*The test:* no local edit was lost without a copy beside it and a word to the director.
 
 Complete when: Either the local work folder was compared against the server exactly once at session start, or there was nothing to compare and nothing was said. Every path whose hashes already agreed was left untouched and unmentioned, every one-sided change moved in its own direction silently, and every two-sided change was named by path after the local copy was kept beside it and the server's version won. A missing or unreadable marker was treated as a first attachment rather than a conflict and was rewritten rather than deleted, and decisions.md never entered the comparison but was overwritten from the server, silently and without a copy kept beside it, whenever the two sides differed.

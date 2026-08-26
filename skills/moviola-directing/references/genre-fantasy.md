@@ -3,4 +3,4 @@
 # Genre Cut Style Guide: Fantasy
 - Secure enough world-building Cuts: the space, the magic, the creatures.
 - Alternate spectacle with the characters' emotion.
-- Use extreme changes of scale (wide to close-up) freely.
+- Large changes of scale are this genre's tool, but a boundary that jumps several shot sizes (Full to Close-Up) is not checked for you. Look at that boundary yourself before it is drawn.

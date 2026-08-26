@@ -2,23 +2,51 @@
 
 # Authoring and Editing
 
-- For a whole story from an empty Draft, establish a one-sentence concept and causal Scene flow, state the intended Scene count, then create each Scene with complete planned Cuts in one add_scene call. Persist the requested Draft; do not stop at prose.
-- Establish recurring principal Characters before the full story and include existing Character references and explicit screen positions in add_scene when the schema supports them.
+## 1 · Draft, Not Prose
+
+Make the Draft, do not stop at prose.
+
+- A story described in the terminal is not a Draft. From an empty Draft: a one-sentence concept, a causal Scene flow, the intended Scene count said out loud, then each Scene created with complete planned Cuts in one add_scene call.
+- Use add_cut only for a later Cut slot inside a Scene that already exists; a new Scene carries its Cuts in the one add_scene call.
+- 5–8 Scenes, 3–6 Cuts per Scene, and at most 40 Cuts are short-film defaults, not limits. Follow a larger requested scale, staging an excessive request in bounded batches.
+- Fill every field add_scene offers that the story already settles. Infer one cheap missing detail from established story context and state the assumption.
+- A declared genre calls set_draft_genre, refreshes the briefing, and reads exactly the matching genre guide. A stated or corrected overall direction goes into set_work_direction — it replaces the Work Direction later briefings echo, keeps other Draft memory, and an empty string clears it.
+
+*The test:* nothing the director agreed to lives only in the conversation.
+
+## 2 · People First
+
+Stand the people up before the story runs.
+
+- Recurring principals exist in the Project before the Scenes that need them, and a later Scene places the existing one rather than creating it again.
 - Name people to fit the period and the genre; the common defaults ('준호' · '지은') are forbidden.
 - Initial position: in a two-person exchange the one who speaks first is screen_left; one person alone is center.
-- Use 5–8 Scenes, 3–6 Cuts per Scene, and at most 40 Cuts as short-film defaults rather than hard limits. Follow a requested scale while staging an excessive request in bounded batches.
-- Fill available location, description, timeOfDay, weather, mood, characters, and cuts in add_scene. Infer one cheap missing detail from established story context and state the assumption.
-- Use update_scene for later location, timeOfDay, weather, mood, or description changes so existing Cuts and Character placements remain intact.
-- When the director states or corrects the overall direction, persist it with set_work_direction; it replaces the Work Direction that later briefings echo, keeps other Draft memory, and an empty string clears it.
-- Use set_cut_lock with cutIds to lock or unlock several Cuts in one call. A locked Cut refuses edits, regeneration, deletion, moving, and duplication until unlocked — the lock guards the Cut itself, not its order number, so moving or duplicating a different Cut past it still works; if any listed Cut is missing, no lock changes.
-- Write concrete visual Cut descriptions with visible people, actions, props, and spatial relations. Put shot size, angle, lens, composition, movement, duration, transition, and Beat only in dedicated fields.
-- Do not write a Cut description as a list of what to leave out ('there is no…', 'does not…'); write the concrete objects, actions, and directions that go into the frame instead.
-- Write a Scene's Cut descriptions so time runs through them — write each at the instant that Cut begins, and carry the props and the distance between people from Cut to Cut. How to join them is in time-continuity.md.
-- A wide with nobody in it drifts easily, so stand a person in the foreground and push the object in question into the background.
-- focusSubject dominates the whole frame, so do not write it as an abstract idea: write the concrete object that has to be visible.
-- In a written field, do not call an angle, a pose, or an expression by a name or a number: write what is visible on screen — not 'a face turned 45 degrees' but 'the tip of the nose points at the right edge, the whole right ear shows, and the shoulders lie diagonally'. When a number does not take, do not write the same number again; write it again as what is seen.
-- Maintain Character identity, costume, props, screen position, and the 180-degree screen axis unless the work establishes a deliberate change.
-- When the director declares a supported genre, call set_draft_genre if available, refresh the briefing, and read exactly the matching genre guide.
-- When a Scene first carries Cuts — a new add_scene, or a re-split that replaces the ones it had — read directing-samples.md and take Scene Rhythm Cast for that Scene before reporting the split settled, even when the director has never named a film. Editing one existing Cut's fields, or changing a Scene's own location, timeOfDay, weather, mood, or description, is not a split and leaves that stage closed. When one request created several Scenes at once, take the stage for the Scene the director turns to next rather than for the whole batch.
+- Identity, costume, props, screen position, and the 180-degree screen axis hold from Cut to Cut unless the work establishes a deliberate change.
 
-Complete when: Every requested Scene exists with its intended complete Cuts and Character placements, every returned identifier is preserved, and every rejected value is reported or corrected from advertised candidates. A Scene whose Cuts were just written or re-split names Scene Rhythm Cast as the stage it now sits on, taken or declined, and no single-field edit dragged that stage open.
+*The test:* one person is one record, in one place, wearing one thing — unless the story changed it.
+
+## 3 · Visible, Not Meant
+
+Write what is visible, not what it means.
+
+- A Cut description is people, actions, props, and the space between them. Shot size, angle, lens, composition, movement, duration, transition, and Beat go only in their dedicated fields.
+- Do not write a Cut description as a list of what is absent ('there is no…', 'does not…'); write the concrete objects, actions, and directions that go into the frame instead.
+- Do not name an angle, a pose, or an expression by a label or a number — not 'a face turned 45 degrees' but 'the tip of the nose points at the right edge, the whole right ear shows, and the shoulders lie diagonally'. When a number does not take, write it again as what is seen rather than writing the same number.
+- focusSubject dominates the whole frame, so give it the concrete object that has to be visible, never an abstract idea.
+- A wide with nobody in it drifts, so stand a person in the foreground and push the object in question behind them.
+
+*The test:* someone who cannot read your mind could draw the frame from the sentence alone.
+
+## 4 · Stop at the Request
+
+An edit stops where the request stops.
+
+- Use update_scene for a later location, timeOfDay, weather, mood, or description change, so the existing Cuts and Character placements survive it.
+- Use focusSubject for what one Cut watches, and assign_character for Scene-level presence and screen position. Which of update_cut and update_cuts to reach for is in the always-loaded manual.
+- A locked Cut refuses edits, regeneration, deletion, moving, and duplication until unlocked; set_cut_lock with cutIds locks or unlocks several Cuts in one call.
+- A Scene's Cut descriptions carry time through them; how, and what breaks when they do not, is in time-continuity.md.
+- **A Scene first carrying Cuts — a new add_scene, or a re-split — sends you to directing-samples.md before that split can be reported settled.** Editing one Cut's fields, or a Scene's own location, timeOfDay, weather, mood, or description, is not a split and leaves that stage closed. Where one request made several Scenes, take the stage for the Scene the director turns to next, not for the batch.
+
+*The test:* every Cut that changed traces to something the director asked for.
+
+Complete when: Every requested Scene exists with its intended complete Cuts and Character placements, and every rejected value was reported or corrected from advertised candidates. A Scene whose Cuts were just written or re-split names Scene Rhythm Cast as the stage it now sits on, taken or declined, and no single-field edit dragged that stage open.

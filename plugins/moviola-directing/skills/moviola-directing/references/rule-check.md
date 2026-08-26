@@ -2,9 +2,26 @@
 
 # Rule Check Details
 
-- Read all returned rejections and warnings after mutation. For an out-of-options value, present returned candidates when intent is ambiguous and retry only with an exact advertised value.
-- Fix accidental directing warnings. For an intentional exception, show the exact warning and obtain confirmation for the next paid call; never hide a warning or silently normalize it away.
-- Before a paid pixel action, inspect the affected Scene or Draft again. If blocked, fix the warning or, after confirmation, pass only returned ackKey values through the acknowledgment argument advertised by that tool; never construct or reuse an acknowledgment, because one applies to that call alone.
-- After mutation or generation, report only fields, targets, warnings, counts, and statuses proven by results. State partial success and skipped targets explicitly.
+## 1 · Read Everything Back
+
+Read every rejection and warning that comes back.
+
+- For an out-of-options value, present the returned candidates when the intent is ambiguous and retry only with an exact advertised value.
+- Preserve returned Scene and Cut identifiers and use only values the current schema advertises — an invented value is what most rejections are.
+
+## 2 · Fixed or Shown
+
+A warning is either fixed or shown.
+
+- Fix an accidental directing warning. For an intentional exception, show the exact warning and obtain confirmation for the next paid call; never hide a warning or silently normalize it away.
+- A shot_character_mismatch is fixed through the data, not the shot size: characters-and-assets.md holds the hand that changes who stands in the frame.
+
+## 3 · Re-read Before Paying
+
+A paid pixel action re-reads its target first.
+
+- Inspect the affected Scene or Draft again. If the gate blocks, fix the warning or, after confirmation, pass only returned ackKey values through the acknowledgment argument advertised by that tool. Never construct or reuse an acknowledgment, because one applies to that call alone.
+
+*The test:* every returned item has one visible disposition — fixed, confirmed for the next call, or waiting on the director.
 
 Complete when: Every returned Rule Check item has one visible disposition: fixed, confirmed for the next call only, or pending the director's decision.

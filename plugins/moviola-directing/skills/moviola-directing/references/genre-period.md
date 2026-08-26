@@ -3,4 +3,4 @@
 # Genre Cut Style Guide: Period Drama
 - Use insert Cuts that show costume, props, and architectural detail.
 - Hold a static composition through ceremony and formal occasion.
-- Lean on establishing Cuts that carry the natural light and the sense of space.
+- Natural light and the sense of space belong in the wide Cuts. An Establishing Shot is at most one per Scene, so carry the rest on Full and Long.

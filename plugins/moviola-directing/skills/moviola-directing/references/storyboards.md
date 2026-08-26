@@ -2,13 +2,32 @@
 
 # Storyboards
 
-- Use get_scene_board to inspect composition, coverage, shot progression, and rhythm across one Scene. Use get_cut_image only when facial or visual detail requires the original Cut image; read its returned Stage before judging whether you are seeing Sketch, Digital Art, or Photorealistic.
-- Before initial generation, re-read the affected outline and Scenes, resolve Rule Check, state the affected Cut count, and confirm generate_storyboard.
-- When the director wants one Scene drawn first, pass those Scene ids as generate_storyboard's sceneIds; only those Scenes are drawn and billed, and locked Cuts still drop out inside them. Do not lock every other Cut to fake a range, and do not draw the whole board and apologise for the cost afterwards. A Scene id that is not in this Draft draws nothing and comes back asking, so read the ids from get_draft_outline rather than retyping them.
+## 1 · Look Before You Bake
+
+Look before you bake.
+
+- get_scene_board shows composition, coverage, shot progression, and rhythm across one Scene; get_cut_image is for facial or visual detail only. Read its returned Stage before judging whether you are seeing Sketch, Digital Art, or Photorealistic.
+- Check the Portrait and Plate state of every Character placed in the affected Scenes. If either asset is missing for anyone, name those Characters and recommend generating their assets first, because Sketches drawn without them give one person a different face and costume in each Cut.
+
+*The test:* you have read the Scenes about to be drawn, not only the request that asked for them.
+
+## 2 · The Range You Named
+
+Bake the range you named, and bill only that.
+
+- When the director wants one Scene drawn first, pass those Scene ids as generate_storyboard's sceneIds; only those Scenes are drawn and billed, and locked Cuts still drop out inside them. Read the Scene ids from get_draft_outline rather than retyping them.
+- Do not lock every other Cut to fake a range, and do not draw the whole board and apologise for the cost afterwards.
 - State the Cut count of the named Scenes when asking for approval, and say plainly that the rest of the board stays undrawn. The Draft's total Cut count belongs to a whole-board request only.
-- Also check the Portrait and Plate state of every Character placed in the affected Scenes. If either asset is missing for anyone, name those Characters and recommend generating their assets first, because Sketches drawn without them give one person a different face and costume in each Cut.
-- Treat generate_storyboard's job_id as queued or processing. Poll get_job_status and inspect the resulting Scene boards after completion.
-- One Draft bakes one range at a time. Re-firing the same range while its Job runs joins that Job and returns joined; a different range is refused outright and carries runningJobId instead of a job_id. A refusal means nothing was queued, so poll get_job_status on that Job, wait for completion, then fire the second range again. Never report refused Scenes as drawn or as waiting in line.
-- Keep a successful Sketch as the Storyboard base. A request for color finalization belongs to renders.md; a request for motion belongs to animatics.md.
+
+*The test:* the number you said out loud is the number that gets billed.
+
+## 3 · One Range at a Time
+
+One Draft bakes one range at a time.
+
+- Re-firing the same range while its Job runs joins that Job and returns joined; a different range is refused outright and carries runningJobId instead of a job_id. A refusal means nothing was queued, so poll that Job, wait for completion, then fire the second range again. Never report refused Scenes as drawn or as waiting in line.
+- Keep a successful Sketch as the Storyboard base. A request for colour finalization belongs to renders.md; a request for motion belongs to animatics.md.
+
+*The test:* every Scene you called queued has a job_id of its own.
 
 Complete when: Every requested Scene board is either visibly inspected, proven generated, proven failed, or accurately reported as still processing with its Job identifier.

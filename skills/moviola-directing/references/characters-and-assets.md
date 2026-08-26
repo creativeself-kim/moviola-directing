@@ -2,21 +2,41 @@
 
 # Characters and Visual Assets
 
-- Call list_characters for the selected Project and get_character when identity or asset detail matters. Resolve one existing Character before updating or deleting it, and create a genuinely new Character with create_character only when the roster shows no match.
+## 1 · One Person, One Record
+
+One person is one record.
+
+- Read the roster before you touch it: resolve one existing Character before updating or deleting it, and create a genuinely new one with create_character only when the roster shows no match.
 - Give recurring Characters a stable proper name, appearance, costume, role, and props. Do not use a 직업·역할어 (job or role label) such as friend, villain, detective, or doctor as a name. Use update_character for identity changes and name_ko for a Korean display-name change, keeping name only to identify the current Character when required; report only returned changed fields.
 - Put only the look that stays fixed in every Cut into a Character's appearance, not a tendency of expression. Expression goes into each Cut description.
-- Use add_scene character inputs for initial Scene placement when creating the Scene. Use assign_character for later Scene-level presence or screen position and focusSubject for one Cut's visual focus.
-- **Identity lives in the library; costume lives in the Scene.** A library Character's costume is the **default** that person usually wears, and when they wear something else in that Scene only (a wetsuit, a raincoat, protective gear, off-duty clothes, mourning dress), it is written onto that Scene's placement as assign_character's costume. When a Scene has a costume written on it, only that reaches the Cut prompts in that Scene and the default costume does not. To clear it, pass an empty string and it returns to the default costume.
+- Before delete_character, name the Character and the Portrait, Plate, and Reference Sheet that disappear. If no unique human-readable name resolves, delete nothing and ask once.
+
+*The test:* every name the director said resolves to exactly one record in this Project.
+
+## 2 · Library and Scene
+
+Identity lives in the library; costume lives in the Scene.
+
+- A library Character's costume is the **default** that person usually wears. When they wear something else in that Scene only (a wetsuit, a raincoat, protective gear, off-duty clothes, mourning dress), it is written onto that Scene's placement as assign_character's costume — only that reaches the Cut prompts in that Scene, and the default costume does not. To clear it, pass an empty string and it returns to the default costume.
 - **Write it on every Scene where the costume holds — writing it once does not follow into the next Scene.** Write it one Scene at a time, from the Scene they come out changed in through to the Scene before they change again, using the same sentence for every Scene in the same costume. Write it on one Scene only and that Scene alone is in the wetsuit while the Scene beside it is drawn in the default costume.
+- Use update_cut_characters (add/remove by name) to change who stands in one Cut's frame. A declared placement drives the shot_character_mismatch warning, so removing the extra person is how a 'Single with two characters' warning is resolved through data rather than by widening the shot.
 - Leave position empty on a call that changes only the costume — it keeps them where they already stand. Fill it in and they move to that place.
 - **What decides the costume, in order of force: the reference picture, then the Cut description, then this field.** Change the costume on a Scene already drawn and only the text changes while the pixels do not follow, so say it takes a redraw to show. A wide or establishing shot carries no person sentence at all, so this field never reaches it.
+
+*The test:* every Scene where the work dresses someone differently carries that costume on its own placement, worded the same way.
+
+## 3 · The Face Decides Once
+
+A face is decided once, then everything downstream inherits it.
+
 - **A reference photo makes the Portrait look like that person.** When the director pastes a photo into the terminal or gives an image address, call add_character_reference before generate_portrait — the generator is told to match the exact face, skin tone and ethnicity in the reference. With an address, pass it as image_url and the tool attaches it in one call. Without one, the tool hands back a 15-minute uploadUrl: push the file there with `curl -X PUT '<uploadUrl>' --data-binary @<file>` and it lands on the Character at that moment — there is no second confirming call, and no token or header is needed. Up to 5 photos per Character, 5MB each, PNG/JPEG/WebP.
 - A photo pasted into Claude Code is kept in the transcript at `~/.claude/projects/{project}/{session-id}.jsonl`, so extract the newest one before pushing it: read that file, collect `image` blocks from `user` messages, and base64-decode the last one's `source.data`. Other terminals keep pastes differently, so use image_url or the web upload there instead of guessing a path.
 - Attaching a photo does not redraw a Portrait that is already locked. Say so plainly, and offer generate_portrait again when the director wants the face to follow the new reference.
-- Confirm generate_portrait, then poll get_job_status. When it completes, look at the candidates with get_portrait_candidates, which returns them as one image labelled [1]…[N]. Inspect that image and the current Character state, then call select_portrait with that job_id and the label number as candidate; selection locks the Portrait and starts Character Plate generation.
-- Look at Character Plate candidates with get_plate_candidates and the plateJobId that select_portrait returned, then call select_plate with that job_id and candidate number. Both selectors still accept a candidate url, but prefer the number — a signed candidate URL is long enough that retyping it corrupts it. A selection is confirmed immediately before the call because it triggers downstream work.
+- Confirm generate_portrait, then read the candidates back from get_portrait_candidates as one image labelled [1]…[N]. Inspect that image and the current Character state before select_portrait — the selection locks the Portrait and starts Character Plate generation.
+- Plate candidates come back from get_plate_candidates with the plateJobId select_portrait returned. Call select_plate with that job_id and the candidate number: **choose by number, not by url**, because a signed candidate URL is long enough that retyping it corrupts it. Confirm a selection immediately before the call, because it starts downstream work.
 - Treat Portrait → Character Plate → Character Reference Sheet as a derived chain, and every returned asset state — those three plus an uploaded Reference Image — as fact. Report stale, running, partial, failed, or complete exactly as returned; a queued Job is not an asset completion.
-- Finish at least the Portrait and Character Plate for every Character placed in a Scene before that Scene's Storyboard is generated. Drawn without them, one person gets a different face, ethnicity, and costume in each Cut, and the split already shows in the Sketches.
-- Before delete_character, name the Character and the Portrait, Plate, and Reference Sheet that disappear. If no unique human-readable name resolves, delete nothing and ask once.
+- **Finish at least the Portrait and Character Plate for every Character placed in a Scene before that Scene's Storyboard is generated.** Drawn without them, one person gets a different face, ethnicity, and costume in each Cut, and the split already shows in the Sketches.
+
+*The test:* no Scene is drawn while someone standing in it has no chosen Portrait and Plate.
 
 Complete when: Every visible recurring Character is represented once in the selected Project, assigned to intended Scenes, and every requested asset state is proven by get_character or a returned Job status. Every Scene where the work dresses someone differently carries that costume on its own Character placement, worded the same across the Scenes that share it, and a costume changed on an already-drawn Scene was reported as text-only until those Cuts are drawn again.

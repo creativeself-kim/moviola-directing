@@ -2,18 +2,44 @@
 
 # Renders and Rerenders
 
-- For a creative revision, update semantic Cut fields first. Confirm regenerate_cut for one Cut or regenerate_board once for a whole-board request; do not fan out one whole-board request into Cut calls. For several Cuts inside a few Scenes, pass those Scene ids as regenerate_board's sceneIds instead.
+## 1 · Text Before Pixels
+
+Fix the text before the pixels.
+
+- Confirm regenerate_cut for one Cut or regenerate_board once for a whole-board request, and do not fan out one whole-board request into per-Cut calls. For several Cuts inside a few Scenes, pass those Scene ids as regenerate_board's sceneIds instead.
+- Update the semantic Cut fields before requesting a rerender, and keep Storyboard and Animatic values in their own dedicated fields.
 - After two failures do not pull the same lever a third time: move to the next deeper lever — Cut description, then focusSubject, then the shot spec — and redraw.
+
+*The test:* something in the Cut changed since the attempt that failed.
+
+## 2 · A Retake Is Not a Final
+
+A retake is a new Sketch, never a new final image.
+
 - regenerate_cut and regenerate_board redraw the Sketch only and leave an already finalized image exactly as it was; a corrected Cut reaches its finalized image only through another finalize_render. Settle every Sketch before finalizing rather than retaking afterwards.
-- Check what a retake actually replaced with get_scene: every imageUrls filename carries the job id that produced it, so a Sketch id differing from the Photorealistic id means the finalized image is still the old one. Report a retake as a new Sketch, never as a redrawn final image.
-- Use finalize_render only after Sketch images exist. Pass exactly Digital Art or Photorealistic when those are the advertised styles.
-- A locked Cut is not protected from finalization. Locking keeps generate_storyboard and regenerate_board off a Cut, but finalize_render ignores locks entirely — sceneIds and cutIds are the only ranges it reads. Never tell the director a lock will keep a Cut out of a color render.
+- Check what a retake actually replaced with get_scene: every imageUrls filename carries the job id that produced it, so a Sketch id differing from the Photorealistic id means the finalized image is still the old one.
+- **A locked Cut is not protected from finalization.** Locking keeps generate_storyboard and regenerate_board off a Cut, but finalize_render ignores locks entirely — sceneIds and cutIds are the only ranges it reads. Never tell the director a lock will keep a Cut out of a colour render.
+
+*The test:* what you call redrawn carries a job id you have actually read.
+
+## 3 · Narrow the Bill
+
+Narrow what you pay for.
+
 - After corrected Cuts have new Sketches, use force=true to finalize the same style again; it is paid and overwrites existing finalized images, so state that before confirmation.
-- Narrow that refinalize to the corrected Cuts with cutIds, and to their Scenes with sceneIds. force=true switches off the already-finalized filter for whatever finalize_render was handed, so force alone repays for every Cut in the Draft that has a Sketch: correcting one Cut in a 124-Cut Draft bills 124 images. Passing that one Cut id bills one image and leaves every other finalized image untouched, which matters most where a Scene holds a Cut that only came out right after several tries — rebaking it to reach its neighbour is how that image is lost.
+- **force=true switches off the already-finalized filter for whatever finalize_render was handed, so force alone repays for every Cut in the Draft that has a Sketch** — correcting one Cut in a 124-Cut Draft bills 124 images. Passing that one Cut id bills one image and leaves every other finalized image untouched, which matters most where a Scene holds a Cut that only came out right after several tries: rebaking it to reach its neighbour is how that image is lost.
 - Pass cutIds alone when the corrected Cuts are the whole story; add sceneIds beside it only to say which Scene those Cuts sit in. An unknown Cut id, or one outside the Scenes you passed, bakes nothing and asks back.
 - State the Cut count of the range you actually passed as the paid scale — with cutIds that is the number of Cut ids, not the Scene's Cut count. Without either argument the number is the whole Draft's Sketched Cut count, not the number of Cuts you corrected.
-- Re-read the target immediately before confirmation, resolve the pixel gate, state the affected Cut count and style, then make the paid call.
-- Poll get_job_status. After completion, inspect the changed board or Cut and report the returned result rather than the intended prompt.
+
+*The test:* the Cut count you named out loud is the count of ids you passed.
+
+## 4 · One Range at a Time
+
+One range at a time, and report what came back.
+
 - regenerate_board is refused while another range of the same Draft is baking, exactly as generate_storyboard is; the refusal carries runningJobId and queues nothing. Wait for that Job before firing the next range.
+- After completion, inspect the changed board or Cut and report the returned result rather than the intended prompt.
+
+*The test:* every claim about the picture comes from a reader, not from the prompt you sent.
 
 Complete when: Each requested rerender or finalization is proven complete, proven failed, or accurately reported as still processing, and no unchanged target is claimed as redrawn.

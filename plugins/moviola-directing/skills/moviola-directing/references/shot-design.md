@@ -2,12 +2,40 @@
 
 # Shot Design
 
-- Emotional and narrative intent → visual shooting design → coherence between the components. For example: isolation→High Angle+CU+Negative Space+Low Key, confrontation→turn it into coverage (two shot + over-the-shoulder OTS + the opposite reverse single + POV/reaction single), lyricism→WS+Leading Lines+Golden Hour.
-- Spatial continuity: take character_positions (left/right) as the 180-degree axis and move the camera while staying on one side of that line, so each person keeps the same screen side from Cut to Cut. OTS→focusSubject=the person faced (the one whose face shows), POV→focusSubject=whoever owns the view, Reaction→focusSubject=the person reacting.
+## 1 · Intent Decides the Design
+
+The beat picks the shot, and the pieces have to agree with each other.
+
+- Emotional and narrative intent → visual shooting design → coherence between the components. For example: isolation→High Angle+CU+Negative Space+Low Key, lyricism→WS+Leading Lines+Golden Hour. Confrontation is a coverage problem rather than one shot.
 - Visual variety is recommended, not forced — in a Scene with two or more people, turn the camera position (shotType) as well as the zoom (shotSize): do not sit on the frontal two shot, but build coverage that walks the camera around them with over-the-shoulder (OTS), the opposite reverse single, POV, and the reaction single. Exception: a quiet talking-head exchange is classically a repeated Eye Level CU/MCU, so uniformity wins there. A framing word in the Cut description, such as a frontal or face-to-face composition, is only a hint — you choose shotType and cameraAngle to fit the beat and the coverage.
-- cameraMovement — carry the movement and the shift of feeling in the action with the camera; do not retreat to Static every time: travel or chase→Tracking, withdrawal or release→Dolly Out, a fight, confusion, or unease→Handheld, sweeping or surveying a space→Pan. Closing distance, rising tension, discovery, moving in, and anything vertical go to Static — this model cannot render Dolly In, Crane, or Tilt (still in all four runs). They stay among the advertised options, but do not reach for them first. Carry the weight by giving durationSeconds the upper end of its range, and do not swap in a different movement instead. Still life, contemplation, a settled talking head, and a held pose are classically Static — do not force movement onto a still Cut.
-- Cut length (seconds, 3–15). Let the beat pace it — insert or reaction 3–4, ordinary 4–5, a lingering emotion or an establishing wide 6–8.
 - Read usedShotSizes in the briefing and avoid repeating the same shot or a second EST.
+
+*The test:* every Cut's shot spec can be explained by its own beat, not by the Cut before it.
+
+## 2 · Stay on One Side of the Line
+
+Screen positions are an axis, and crossing it swaps who is where.
+
+- Spatial continuity: take character_positions (left/right) as the 180-degree axis and move the camera while staying on one side of that line, so each person keeps the same screen side from Cut to Cut. OTS→focusSubject=the person faced (the one whose face shows), POV→focusSubject=whoever owns the view, Reaction→focusSubject=the person reacting.
 - For every shot, pick with focusSubject the one person or object the camera actually looks at.
+
+*The test:* each person keeps the same screen side from the first Cut of the Scene to the last.
+
+## 3 · Move Only Where the Model Can
+
+Choose a movement this video model actually renders.
+
+- cameraMovement — carry the action's movement and its shift of feeling with the camera rather than retreating to Static every time: travel or chase→Tracking, withdrawal or release→Dolly Out, a fight, confusion, or unease→Handheld, sweeping or surveying a space→Pan. Still life, contemplation, a settled talking head, and a held pose are classically Static — do not force movement onto a still Cut. Closing distance, rising tension, discovery, moving in, and anything vertical go to Static, because this model does not render Dolly In, Crane, or Tilt: carry that weight by giving durationSeconds the upper end of its range, and do not swap in a different movement.
+- **The restriction is measured on video, not on a still** — nobody has measured what Dolly In, Crane, or Tilt draws on a Sketch. It still binds this field, because a Cut whose clip movement is blank goes out with the Storyboard value instead. The measurements are in time-continuity.md.
+
+*The test:* no Cut asks the camera to do something that comes back as a still frame.
+
+## 4 · Let the Beat Set the Length
+
+Duration is a directing choice, not a default.
+
+- Cut length (seconds, 3–15). Let the beat pace it — insert or reaction 3–4, ordinary 4–5, a lingering emotion or an establishing wide 6–8.
+
+*The test:* an insert and a lingering wide do not carry the same duration.
 
 Complete when: Every Cut has an intentional, spatially coherent shot spec whose coverage, movement, focus, and duration serve its dramatic beat without needless repetition.
