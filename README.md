@@ -147,13 +147,23 @@ To check that it took, ask for something:
 
 ## Keeping it current
 
-There is no separate update command. Run the install command again and it fetches the
-current copy.
+How you update depends on how you installed.
+
+- **`npx skills`** — there is no separate update command. Run the install command again
+  and it fetches the current copy.
+- **Claude Code marketplace** — `claude plugin update moviola-directing@moviola`, or let
+  it refresh on its own.
+- **Codex marketplace** — `codex plugin marketplace upgrade`, then `codex plugin add
+  moviola-directing@moviola`.
 
 This repository is published by hand and can lag a MOVIOLA release, so nothing here
 promises that the copy you install is the newest one. You do not have to watch for it:
 the skill reports its version on every call, and when the server sees an old one, it
 says so to your assistant while you work.
+
+**A first-digit change means everyone reinstalls.** The server judges freshness by that
+digit alone, so a jump like 3.x → 0.1 marks every existing install stale until it is
+updated. Smaller changes move the third digit (0.1.1, 0.1.2) and never nag.
 
 ## When it does not connect
 
