@@ -32,8 +32,10 @@ Write what is visible, not what it means.
 - A Cut description is people, actions, props, and the space between them. Shot size, angle, lens, composition, movement, duration, transition, and Beat go only in their dedicated fields.
 - Do not write a Cut description as a list of what is absent ('there is no…', 'does not…'); write the concrete objects, actions, and directions that go into the frame instead.
 - Do not name an angle, a pose, or an expression by a label or a number — not 'a face turned 45 degrees' but 'the tip of the nose points at the right edge, the whole right ear shows, and the shoulders lie diagonally'. When a number does not take, write it again as what is seen rather than writing the same number.
-- focusSubject dominates the whole frame, so give it the concrete object that has to be visible, never an abstract idea.
+- focusSubject names what the camera looks at, not how close — shot size owns the distance. On a wide, pick the thing that lives at that distance (a line of approaching sedans, not a headlight); on a tight cut the focus may fill the frame.
 - A wide with nobody in it drifts, so stand a person in the foreground and push the object in question behind them.
+- **Write the action and lose; write the contact and win.** 'leans forward and looks in through the window' came back standing bolt upright, while 'the forehead level with the top line of the broken window frame' landed first try. 'pushes the rifle held in his right hand in through the window' floated the gun in mid-air; 'the right hand wrapped around the grip, the index finger caught in front of the trigger guard, the underside of the barrel resting on the lower line of the window frame' landed. Name where the body touches the world — which surface, which line, which part of the hand — and the mismatches between a figure's pose and the props around it go away together.
+- **An era is not caught by an adjective; it is caught by a name.** '1980s angular sedan' lost six times; 'Soviet-made Volga' won on the first. Name the make, the model, or where it was built, and the adjective becomes unnecessary. A description that pins a period on a generic object gets a hint — it is a hint and not a warning because it never stops a paid render.
 
 *The test:* someone who cannot read your mind could draw the frame from the sentence alone.
 
@@ -49,4 +51,4 @@ An edit stops where the request stops.
 
 *The test:* every Cut that changed traces to something the director asked for.
 
-Complete when: Every requested Scene exists with its intended complete Cuts and Character placements, and every rejected value was reported or corrected from advertised candidates. A Scene whose Cuts were just written or re-split names Scene Rhythm Cast as the stage it now sits on, taken or declined, and no single-field edit dragged that stage open.
+Complete when: Every requested Scene exists with its intended complete Cuts and Character placements, and every rejected value was reported or corrected from advertised candidates. Every beat where a body meets the world names the contact, and no period rests on an adjective where a name would carry it. A Scene whose Cuts were just written or re-split names Scene Rhythm Cast as the stage it now sits on, taken or declined, and no single-field edit dragged that stage open.

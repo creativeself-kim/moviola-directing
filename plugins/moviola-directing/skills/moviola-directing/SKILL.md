@@ -7,7 +7,7 @@ description: Direct MOVIOLA projects through MOVIOLA MCP tools. Use when Claude 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `0.1.0`: send this exact value as `skill_version` in every `get_draft_outline` call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `0.1.4`: send this exact value as `skill_version` in every `get_draft_outline` call. The server's current Rule Check remains authoritative.
 
 ## Run the directing loop
 
@@ -67,7 +67,8 @@ Complete when: The reported work sits on one named stage, and the stage above it
 ### 3. Semantic tool routing
 - Keep an opinion, evaluation, or idea request read-only. When the director asks for alternatives, separate the proposal from any later edit or paid rerender.
 - Colour is computed on top of the Final Render, so none of the colour tools re-bakes a pixel and none of them costs the director anything. Which painting and how strongly are in color.md.
-- Use update_cut for one focused field and update_cuts for an atomic multi-Cut Cut Spec edit. When update_cuts changes nothing, read each not_updated_cuts reason: unchanged, not_found, or locked. Use focusSubject for what one Cut watches; use assign_character for Scene-level presence and screen position.
+- Use update_cut for one focused field and update_cuts for an atomic multi-Cut Cut Spec edit. When update_cuts changes nothing, read each not_updated_cuts reason: unchanged, not_found, or locked. Use focusSubject for what one Cut watches; use assign_character for Scene-level presence and screen position. Use update_location to create or edit a Location (parent and relation included) and assign_location to attach a Scene to an existing Location by locationId — never by name alone, so a typo cannot spawn a place. Recompute a frozen Location anchor with update_location(recomputeAnchor=true); read the returned scale out place by place before acknowledgeRebake, and do not discard the Scene.
+- To change one place in a long description or animaticPrompt, send update_cut with find and replace instead of retyping the whole body — retyping a long Korean body changes letters in the sentences you meant to leave alone, and nothing downstream can tell a mistyped word from an intended one. When a whole body genuinely has to be rewritten, read the response textChanges and confirm every fragment listed there is one you meant.
 - Include a concise reason with every mutation that accepts it so the Decision Memo records why the work changed.
 - Use the terminal model's own brain for authoring, shot choices, and creative review. The terminal seat does not borrow MOVIOLA's create_scenario, ai_shot, ai_shot_all, advise, or revision_proposal models.
 Complete when: Every requested meaning maps to one available semantic tool or an honestly reported limitation, with no invented signature or widened scope.

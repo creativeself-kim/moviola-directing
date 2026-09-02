@@ -2,7 +2,7 @@
 
 # Canonical Directing Rules
 
-Use skill version `0.1.0` in every `get_draft_outline` call.
+Use skill version `0.1.4` in every `get_draft_outline` call.
 
 ## Cut splitting flow
 
@@ -13,5 +13,7 @@ Cut splitting flow: Establishing → Development → Emphasis → Resolution. Ke
 shotSize × lensType physical compatibility: a Wide lens→Wide/EST shot, Tele/Macro→CU/ECU. shotSize × cameraAngle intent match: no Bird's Eye on a CU.
 
 Establishing Shot, 4 conditions — only when at least one of (a) a new location, (b) a time jump, (c) an exterior or large-scale space, (d) an emotional reset is met. At most once per Scene, cutIndex=0 preferred. When none is met, choose Full/Long/Group/Medium to fit the plot beat.
+
+focusSubject names what to look at, not how close — shotSize owns the distance. A Long Shot of a headlight comes back as a macro; on a tight cut the focus may fill the frame.
 
 Complete when: every authored or reviewed Cut has a deliberate dramatic function, physically coherent shot grammar, and continuity with adjacent Cuts.

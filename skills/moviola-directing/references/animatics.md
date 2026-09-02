@@ -8,7 +8,7 @@
 
 Enter: Cut text and shot spec settled. Leave: every Cut carries a clipCameraMovement and a clipEasing.
 
-- clipCameraMovement is where the camera goes; clipEasing is how fast it gets there — linear, easeIn, easeOut, easeInOut. Leave it empty and the model picks a constant speed, which reads mechanical. easeOut settles onto a face, easeIn breaks out of stillness, easeInOut starts and ends at rest. A Static Cut ignores it.
+- clipCameraMovement is where the camera goes — **reference only, no guarantee it comes out as specified.** The handle that actually works is animaticPrompt: what moves where inside the frame. Keep every option; a later model may honour a value this one does not. The twenty-Cut bake and what it did not measure are in time-continuity.md. clipEasing is how fast it gets there — linear, easeIn, easeOut, easeInOut. Leave it empty and the model picks a constant speed, which reads mechanical. easeOut settles onto a face, easeIn breaks out of stillness, easeInOut starts and ends at rest. A Static Cut ignores it.
 - **This model does not render Dolly In, Crane, or Tilt.** Dolly In comes back a still frame, Crane comes back a Dolly, Tilt comes back neither. Dolly Out works. Carry a vertical move as subject motion in animaticPrompt, and a push with the Cut's own action or its length. Measure again when the video model changes; the grounds are in time-continuity.md.
 
 *The test:* no Cut goes into the bake with an empty clipEasing.
@@ -26,8 +26,10 @@ Enter: every Character in the Scene has a chosen Portrait and Plate. Leave: anim
 Enter: step 2 left. Leave: every correction went in through one update_cuts call.
 
 - animaticPrompt is carried instead of the Cut description — never both. Correct a line whose direction is wrong, or that let people, costume, props, background, or the camera in. Motion only. Name what moves the opposite way beside what moves. Start with the Cuts whose first frame is a held pose.
+- **Write where the movement stops.** A three-second clip runs the move to its end, so a line that heads out of the picture with nowhere to stop takes the subject out of the frame or finishes the event — and that Cut has written the next Cut's content for it. 'the front of the car tips toward the bottom edge' left the last frame with no car in it while the five Cuts after it still had it on the bridge; a standoff Cut came back with the car fully under the river four Cuts before it falls. 'It halts in the lower half of the frame and hangs there' landed both on the first try. A line with no end point raises one warning at the video doors.
+- **A figure who must hold still is better left out of the line.** An arm with no instruction fidgets: one figure meant to stand still went hand to sandbag → hip → sandbag, holster → hip → holster, on repeat, and 'stands up in one motion and stops there' did not settle it either. **Hand the movement to something else** — approaching headlights, a door swinging — and the person stops. Naming them only to say they do not move puts the fidget back.
 
-*The test:* the corrections went out in one call, and each line says motion only.
+*The test:* the corrections went out in one call, each line says motion only, and each one says where it stops.
 
 ## 4 · Generate
 
@@ -41,21 +43,23 @@ Enter: a finalized frame for every Cut, Rule Check resolved, the paid scale name
 
 Enter: step 4 left. Leave: every Cut named completed, failed, or still processing.
 
-- A returned clipId is queued. Poll get_clip_status for one Cut and list_clips for the Draft. **A videoUrl is not completion.** With retainedPreviousVideo true it is the last successful video, kept while a re-animation runs or after this one failed. The status decides.
+- A returned clipId is queued. Poll get_clip_status for one Cut and list_clips for the Draft. **A videoUrl is not completion.** With retainedPreviousVideo true it is the last successful video, kept while a re-animation runs or after this one failed. The status decides. **completed does not mean the clip starts from the current Final.** list_clips marks each clip stale when its source image is not that Cut's current start frame. Re-bake a Final and that clip is stale immediately — do not compare URLs yourself.
 
-*The test:* every Cut is named completed, failed, or processing — none from a videoUrl.
+*The test:* every Cut is named completed, failed, or processing — none from a videoUrl — and a stale clip is named as stale, not as current.
 
 ## 6 · Describe the clips
 
 Enter: at least one clip completed. Leave: every completed clip described and held against its stored intent.
 
-- **completed means generated, not seen.** Neither seat can play a video, so nothing is known about a clip until review_clips describes it. Call it with the finished Cut ids and read back subject motion, one camera label out of the twelve plus a sentence, pace out of four shapes, first frame against last, whether a person changes mid-clip, whether place or wardrobe changes. Use asks for the one thing this work must hold, one line per Cut.
-- **It describes; you judge.** Hold the description against that Cut's own clipCameraMovement, clipEasing, and animaticPrompt — all three come back beside it — and against the Work Direction and Decision Memo. Pace comes back in the same four shapes as clipEasing. When clipEasing was empty, a constant answer is the model's default rather than a fault: say so before proposing a change.
+- **completed means generated, not seen.** Neither seat can play a video, so nothing is known about a clip until review_clips describes it. Call it with the finished Cut ids and read back seven fields: subject motion, one camera label out of the twelve, one camera sentence, pace out of the four clipEasing shapes, first frame against last, whether a person changes mid-clip, whether place or wardrobe changes. The fields come back structured. Use asks for the one thing this work must hold, one line per Cut. Set prose=true only when you need the long description.
+- **It describes; you judge.** Hold the description against that Cut's own clipCameraMovement, clipEasing, and animaticPrompt — all three come back beside it — and against the Work Direction and Decision Memo. When the asked clipCameraMovement and the seen camera label differ, that fact is recorded on the clip as cameraMovementMismatch — do not treat a matching label as a promise it will match next time. Pace comes back in the same four shapes as clipEasing. When clipEasing was empty, a constant answer is the model's default rather than a fault: say so before proposing a change.
+- **Answers follow the Draft's language.** Hangul in the Draft comes back in Korean; a Latin-only Draft comes back in English. One language for the whole call — do not switch per question.
 - **Over five Cuts it returns a plan and spends nothing. That plan is not a failure** — state the scale and call again with confirm=true once approved. It costs roughly $0.01–0.02 per Cut, and a Cut with no clip, a running or failed clip, or a retained previous video is skipped without spending.
-- **Nothing about a review is stored.** Put the judgement in the edit reason. Fix the flagged Cuts in one update_cuts call — animaticPrompt, clipCameraMovement, and clipEasing are all batch-editable there. **A Cut you re-animated must be described again**; the earlier review is about a video that no longer exists.
+- **Over 7 reviewable Cuts it refuses rather than times out.** Name the count and split the batch. confirm=true does not raise this ceiling.
+- **The seven fields are stored on the clip.** get_draft_outline shows unverifiedClipCount — completed clips whose current video has not been described. Put the judgement in the edit reason. Fix the flagged Cuts in one update_cuts call — animaticPrompt, clipCameraMovement, and clipEasing are all batch-editable there. **A Cut you re-animated counts as unverified**; the stored review is about the previous video.
 
 *The test:* nothing was called done that no reader has described.
 
 - **Cancelling is not a step but the director's word arriving mid-step.** cancel_animatic with the submissionId from animate_cut or animate_draft, narrowed by cut_ids. A running generation is still worth cancelling — a finished run bills in full — but cancellation is not a refund. Report the returned outcome plainly: cancelled, too_late, already_cancelled, or cancel_failed.
 
-Complete when: Every Cut in the touched Scene carries a clipCameraMovement and a clipEasing, and none asks this model for Dolly In, Crane, or Tilt. The baked animaticPrompt was read back and only its wrong lines corrected, in one update_cuts call. Every generation ran on a finalized frame with a confirmed paid scale, and every skipped Cut was named. Every Cut is reported from its status, never from a present videoUrl. Every completed clip was described by review_clips and held against its stored intent before the stage was called finished — a plan returned over five Cuts being an approval request, not a failure — and every re-animated Cut was described again.
+Complete when: Every Cut in the touched Scene carries a clipCameraMovement and a clipEasing, and none asks this model for Dolly In, Crane, or Tilt. The baked animaticPrompt was read back and only its wrong lines corrected, in one update_cuts call, and every movement that heads out of the picture says where it stops. Every generation ran on a finalized frame with a confirmed paid scale, and every skipped Cut was named. Every Cut is reported from its status, never from a present videoUrl. Every completed clip was described by review_clips and held against its stored intent before the stage was called finished — a plan returned over five Cuts being an approval request, not a failure, a refusal over the batch ceiling being a split request rather than a timeout — and every re-animated Cut was described again.

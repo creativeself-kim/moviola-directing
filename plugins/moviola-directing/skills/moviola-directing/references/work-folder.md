@@ -17,7 +17,7 @@ Open the least you need.
 Write once, and send it in the same step.
 
 - Write **once per finished Scene, into that Scene's section**. Do not write on every edit.
-- Once it is written locally, it goes up to the server **in the same step** — give `put_work_file` the project card's project_id, the path relative to the folder, and the **whole** file you just wrote. Do not batch the uploads to the end of the session: the terminal simply closes with no signal that it finished, so a batch means the whole day's work never goes up.
+- Once it is written locally, it goes up to the server **in the same step** — give `put_work_file` the open Draft's draft_id (the project card's project_id also works), the path relative to the folder, and the **whole** file you just wrote. Do not batch the uploads to the end of the session: the terminal simply closes with no signal that it finished, so a batch means the whole day's work never goes up.
 - If working that Scene changed a file under `notes/`, upload it too. Do not re-upload a file you did not change. The project card (`project.md`) does not go up — it is the note that finds the server, and the server refuses it. A failed upload never stops the local work. Name by path **once** which file did not go up, and send that file first alongside the next Scene's. Do not retry it in a loop on the spot.
 - **Append, and re-read immediately before writing.** The same work can be open in two windows — rewriting the whole file loses what the other window just wrote.
 

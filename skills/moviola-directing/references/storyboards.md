@@ -6,6 +6,8 @@
 
 Look before you bake.
 
+- get_draft_outline carries each Scene's Location name and the Location list with its computed anchor draft. Before the first Sketch, generate_storyboard returns that draft and stops; show it to the director, edit with update_location if they ask, and pass acknowledgeAnchors only after they approve.
+- Once anything is drawn, a Location that has since moved stops generate_storyboard instead, and the refusal names every place whose pictures re-bake — the derived Locations included. Read that line to the director as it stands, place by place, and pass acknowledgeRebake only after they approve. When they would rather keep the Cuts already drawn, add rebakeCuts=false: only the undrawn Cuts are baked, and the stale plates wait for the pass that draws them.
 - get_scene_board shows composition, coverage, shot progression, and rhythm across one Scene; get_cut_image is for facial or visual detail only. Read its returned Stage before judging whether you are seeing Sketch, Digital Art, or Photorealistic.
 - Check the Portrait and Plate state of every Character placed in the affected Scenes. If either asset is missing for anyone, name those Characters and recommend generating their assets first, because Sketches drawn without them give one person a different face and costume in each Cut.
 
