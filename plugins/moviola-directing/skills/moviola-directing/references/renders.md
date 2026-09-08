@@ -38,7 +38,7 @@ Narrow what you pay for.
 One range at a time, and report what came back.
 
 - regenerate_board is refused while another range of the same Draft is baking, exactly as generate_storyboard is; the refusal carries runningJobId and queues nothing. Wait for that Job before firing the next range.
-- After completion, inspect the changed board or Cut and report the returned result rather than the intended prompt.
+- After completion, inspect the changed board or Cut and report the returned result rather than the intended prompt. get_cut_prompt is the reader for that intended prompt — the string the image model actually received, not the Shot Breakdown archive.
 
 *The test:* every claim about the picture comes from a reader, not from the prompt you sent.
 

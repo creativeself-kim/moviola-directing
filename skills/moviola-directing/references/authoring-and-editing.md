@@ -36,6 +36,9 @@ Write what is visible, not what it means.
 - A wide with nobody in it drifts, so stand a person in the foreground and push the object in question behind them.
 - **Write the action and lose; write the contact and win.** 'leans forward and looks in through the window' came back standing bolt upright, while 'the forehead level with the top line of the broken window frame' landed first try. 'pushes the rifle held in his right hand in through the window' floated the gun in mid-air; 'the right hand wrapped around the grip, the index finger caught in front of the trigger guard, the underside of the barrel resting on the lower line of the window frame' landed. Name where the body touches the world — which surface, which line, which part of the hand — and the mismatches between a figure's pose and the props around it go away together.
 - **An era is not caught by an adjective; it is caught by a name.** '1980s angular sedan' lost six times; 'Soviet-made Volga' won on the first. Name the make, the model, or where it was built, and the adjective becomes unnecessary. A description that pins a period on a generic object gets a hint — it is a hint and not a warning because it never stops a paid render.
+- **A single-person medium cut restates the room in its own description.** Spatial composition does not ride on the master; the Location geometry line is not a substitute for naming the room the figure stands in. A one-person MCU still keeps the portrait as a wardrobe reference.
+- **An establishing cut names the placement contact of anyone not yet present** — "shoulder seen through the driver's window" — rather than relying on the master to place them.
+- **The room lives on the Location as geometry, not in the Work Direction.** An [실내] paragraph does not reach the picture; write the walls and the counter with update_location.
 
 *The test:* someone who cannot read your mind could draw the frame from the sentence alone.
 
