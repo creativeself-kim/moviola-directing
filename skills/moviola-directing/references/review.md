@@ -17,6 +17,7 @@ A still tells you nothing about motion.
 
 - A board says nothing about whether a clip moved, held its speed, or kept one face throughout, so never call a clip still, smooth, or on-brief from the board alone.
 - For motion, take the facts from review_clips and judge them yourself. It describes what the clip shows and never decides — what settles whether that is right is the Work Direction, the Decision Memo, and the Cut description, which are yours to read. What it reads back is step 6 of animatics.md.
+- Read existing observations for free from list_clips: review carries the seven fields, askAnswer, reviewedAt, and videoUrlMatches. Use it for the current video only when videoUrlMatches is true. Confirmed batches over five return jobId: follow get_job_status to result.reviewed, then name any Cut error. Calling review_clips again is another paid review, not a read.
 - **It is paid, and over five reviewable Cuts it returns a plan instead — an approval request, not a failure.** State the scale and call again with confirm=true. Review the Cuts a finding actually rests on rather than sweeping the Draft; the cost and the skipping are in animatics.md.
 
 *The test:* no sentence about movement rests on a still.

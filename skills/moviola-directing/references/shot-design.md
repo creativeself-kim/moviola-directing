@@ -38,4 +38,83 @@ Duration is a directing choice, not a default.
 
 *The test:* an insert and a lingering wide do not carry the same duration.
 
-Complete when: Every Cut has an intentional, spatially coherent shot spec whose coverage, movement, focus, and duration serve its dramatic beat without needless repetition.
+## 5 · Write What the Value Needs
+
+A chosen spec value is a promise: the Cut description has to hold the one visible fact that value requires.
+
+- Camera words stay in their fields. These tables name the fact in front of the lens, not the field name.
+- Read Write this for every value you chose and put that fact in the Cut description. Breaks when is the picture that comes back if you skip it.
+
+### shotSize
+
+| Value | Write this | Breaks when |
+| --- | --- | --- |
+| Establishing Shot | Name the place as a map: what sits left, right, and far, and how far those things are. | A lone figure with no landmark comes back as a portrait. |
+| Extreme Wide Shot | Put a tiny figure against a named stretch of ground that fills the frame. | If the figure is large enough to read a face, the scale is gone. |
+| Long Shot | Write the whole body head to toe, and the ground they stand on. | Crop at the knees and it comes back as a medium long shot. |
+| Full Shot | Frame the body head to toe with almost no air above the head or below the feet. | Extra sky or floor turns it into a long shot of the room. |
+| Medium Long Shot | Cut at the knees and keep the stance readable — weight on which leg, where the hands hang. | Crop at the waist and the knees vanish; the stance is gone. |
+| Cowboy Shot | Cut at mid-thigh so the belt, pocket, or hanging hand stays in frame. | Crop at the waist and the hip-line that names this size is gone. |
+| Medium Shot | Cut at the waist; keep both hands in frame if they are doing something. | Let the hands fall out and it reads as a chest-up close. |
+| Medium Close-Up | Cut at the chest; name the collarbone or the neckline that marks the bottom. | Show the waist and it opens into a medium; crop at the chin and it jumps to a close-up. |
+| Close-Up | Write the face and both shoulders filling the frame; name the expression. | Leave the chest in and it opens into a medium close-up; crop to one feature and it jumps to extreme. |
+| Extreme Close-Up | Name the one detail that fills the frame — an eye, a hand, a drop on the lip. | Show the whole face and the shoulders and it is already a close-up. |
+
+### cameraAngle
+
+| Value | Write this | Breaks when |
+| --- | --- | --- |
+| Eye Level | Write the face seen straight on — neither the crown nor the underside of the chin dominates — and keep the horizon level. | If the crown or the underside of the chin takes over, the eye line has moved. |
+| High Angle | Write the tops that show from above — the crown, the shoulder tops — and how the body shortens. | If they still look as tall as at eye level, the high angle is gone. |
+| Low Angle | Write the undersides that show from below — the jaw, the chin — and how the body towers. | If they look no taller than at eye level, the low angle is gone. |
+| Bird's Eye View | Write the ground-plan: heads as discs, shoulders as ovals, how the figures sit relative to each other. | Any horizon line left in the frame and it is only a high angle. |
+| Worm's Eye View | Write what towers over the lens — a boot sole, a table underside, a ceiling receding. | If nothing looms overhead it is only a low angle. |
+| Dutch Angle | Name a vertical that now leans — a door jamb, a lamp post — and by how much the horizon tilts. | A tilt with no vertical or horizon to read against disappears. |
+| Overhead | Write the tabletop or floor as a flat map, objects laid out as seen from directly above. | If the sides of objects still show, the camera has not gone overhead. |
+
+### cameraMovement
+
+| Value | Write this | Breaks when |
+| --- | --- | --- |
+| Static | Write the frame as held — the edges stay put even if a body inside them walks. | If the edges travel with the subject, the lock is gone. |
+| Dolly In | Name the start and the stop, and the distance between them — doorway to the eyes. | Without a stop the camera wanders. |
+| Dolly Out | Write what enters the frame as we pull back — a doorway, a second person, the whole room. | If nothing new appears, it is only the same crop shrinking. |
+| Tracking | Write what stays beside us — the walking hip, the car door — and the ground that slides past. | Lose the thing being followed and the camera drifts off them. |
+| Pan Left | Write what sits at the left edge now and what will sit there when the pan ends. | No destination on the left and the pan sweeps into empty wall. |
+| Pan Right | Write what sits at the right edge now and what will sit there when the pan ends. | No destination on the right and the pan sweeps into empty wall. |
+| Tilt Up | Write the low start (boots, a table top) and the high stop (a face, a ceiling lamp). | No high stop and the tilt climbs past the subject into ceiling. |
+| Tilt Down | Write the high start (a face, a sign) and the low stop (hands, a floor stain). | No low stop and the tilt drops past the subject into floor. |
+| Crane Up | Write the low start and the high stop, and what of the ground plan appears as we rise. | No high stop and the rise has nowhere to land. |
+| Crane Down | Write the high start and the low stop, and what of the ground disappears as we descend. | No low stop and the descent drives into the floor. |
+| Handheld | Write the small shake on a named edge — a door frame jittering, a shoulder breathing. | No shake on an edge and it comes back locked off. |
+| Steadicam | Write the path through space — past the counter, around the pillar, into the hall — as a smooth glide. | No path and it reads as a static or a handheld wander. |
+
+### composition
+
+| Value | Write this | Breaks when |
+| --- | --- | --- |
+| Rule of Thirds | Put the subject on a third-line crossing and leave the opposite third empty. | Park them in the middle and the thirds disappear. |
+| Center Framing | Put the subject on the dead center and keep left and right equal. | A heavier side (a lamp, a second person) knocks it off center. |
+| Leading Lines | Name the lines that run toward the subject — a corridor, a rail, a road — and where they meet. | Lines that do not meet at the subject scatter the eye. |
+| Negative Space | Write the empty area as the larger mass, and the small subject against it. | Fill the empty with props or a second figure and the isolation is gone. |
+| Foreground Frame | Name a near object that can sit at the edges — a door jamb, a window bar, a branch — and what is seen through or past it. | If every object sits behind the subject, nothing in the foreground is framing them. |
+| Symmetrical | Write the left-right mirror: the same object, the same distance, on both sides of the center. | One unmatched object on one side and the mirror breaks. |
+| Diagonal | Name the diagonal that cuts the frame — a staircase, a fallen beam — and who sits on it. | All lines stay horizontal and the diagonal never appears. |
+| Shallow Depth of Field | Name what is sharp (the eyes, a ring) and what falls to blur (the wall, a second face). | Ask for a sharp background as well and the shallow field is gone. |
+
+### lightingStyle
+
+| Value | Write this | Breaks when |
+| --- | --- | --- |
+| Natural | Name the real source in the room — a window, the sky — and which side it hits. | Add a second invented lamp and it stops being natural. |
+| High Key | Write bright, even light with almost no shadow under the chin or the nose. | A hard cheek shadow and it is already low key. |
+| Low Key | Write which small area is lit (one cheek, a hand) and let the rest fall to black. | Light the whole face and the dark mass is gone. |
+| Silhouette | Put the bright source behind them and write the outline only — no eye, no cloth detail. | Any light on the face and it is a backlit portrait, not a silhouette. |
+| Chiaroscuro | Write one narrow source and the dark as a mass; let one side of the face disappear. | Light the background for interest and the black field collapses. |
+| Neon | Write the colour the neon throws on skin or walls; a tube may sit in frame. | If the light has no neon colour it is not neon. |
+| Practical | Name the lamp that is in the picture — a desk lamp, a fridge light — and who it actually hits. | A glow with no visible source is not practical. |
+| Golden Hour | Write the low sun as a direction (from the left, from behind) and the long shadow it throws. | Warm colour with overhead sun is not golden hour. |
+
+*The test:* every chosen value has its Write-this fact visible in the Cut description.
+
+Complete when: Every Cut has an intentional, spatially coherent shot spec whose coverage, movement, focus, and duration serve its dramatic beat without needless repetition, and every chosen spec value has its required visible fact written into that Cut's description.
