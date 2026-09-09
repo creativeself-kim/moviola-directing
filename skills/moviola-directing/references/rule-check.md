@@ -15,6 +15,7 @@ A warning is either fixed or shown.
 
 - Fix an accidental directing warning. For an intentional exception, show the exact warning and obtain confirmation for the next paid call; never hide a warning or silently normalize it away.
 - A shot_character_mismatch is fixed through the data, not the shot size: characters-and-assets.md holds the hand that changes who stands in the frame.
+- A subject_motion_without_end_point at an animate_cut or animate_draft gate means animaticPrompt names a subject action without its end point: write where it stops, such as lowering a cup from chest height to the waist and stopping there, or confirm the returned ackKey for that call.
 
 ## 3 · Re-read Before Paying
 
