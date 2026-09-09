@@ -43,6 +43,7 @@ Duration is a directing choice, not a default.
 A chosen spec value is a promise: the Cut description has to hold the one visible fact that value requires.
 
 - Camera words stay in their fields. These tables name the fact in front of the lens, not the field name.
+- If a Character standing in the Scene has a camera registered in the Character Library costume (props, clothing, or state), treat the camera in the description as a prop; only filming directions still warn.
 - Read Write this for every value you chose and put that fact in the Cut description. Breaks when is the picture that comes back if you skip it.
 
 ### shotSize
