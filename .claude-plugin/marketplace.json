@@ -10,7 +10,12 @@
       "source": "./plugins/moviola-directing",
       "description": "Direct MOVIOLA Drafts with the shared Assistant Director manual and canonical Directing Rules.",
       "category": "productivity",
-      "keywords": ["moviola", "storyboard", "directing", "assistant-director"]
+      "keywords": [
+        "moviola",
+        "storyboard",
+        "directing",
+        "assistant-director"
+      ]
     }
   ]
 }

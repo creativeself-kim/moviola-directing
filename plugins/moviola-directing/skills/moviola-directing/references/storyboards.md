@@ -2,6 +2,9 @@
 
 # Storyboards
 
+- Before the first Sketch generation, ask whether the director wants the 2D or 3D pipeline unless their answer is already explicit in the conversation or saved on the Scene. Explain briefly: 2D generates directly from references; 3D uses one shared Blender Scene and a camera per Cut before drawing AI Sketches. Do not silently choose. Save the answer once per Scene with set_scene_3d_mode, or pass it as generate_storyboard.pipelineMode for the named sceneIds when that call is the route you take. Reuse the saved choice without asking again per Cut.
+- For 2D Scenes, generate_storyboard runs the existing server pipeline through Sketch. A 3D Scene first takes one execution route from scene-3d-sketch.md step 1. Ordinary generate_storyboard — without prepareReferences=true — on a 3D Scene queues a sceneSketch Job that only the director's Mac worker runs, so call it for 3D only on the worker route. On the interactive route call it only for the 2D sceneIds; 3D reference preparation with prepareReferences=true (scene-3d-sketch.md step 2) stays available on either route. A mixed worker request returns a 2D job_id and a separate sceneSketch.jobId: follow both with get_job_status, the 2D one by Cut count and the 3D one by status and stage. waiting_for_mac means queued, never complete. The worker prepares/reuses references, one Scene source and its Cut cameras, then renders and generates the first AI Sketches automatically. Scene preparation is optional inspection, not a required manual stop.
+
 ## 1 · Look Before You Bake
 
 Look before you bake.
@@ -9,7 +12,7 @@ Look before you bake.
 - get_draft_outline carries each Scene's Location name and the Location list with any computed anchor draft. Before the first Sketch, generate_storyboard computes and saves a missing draft, returns it and stops; show it to the director, edit with update_location if they ask, and pass acknowledgeAnchors only after they approve. Unchanged anchors are reused without another calculation. If preparation fails, the tool proceeds and says it is baking without an anchor draft; relay that note.
 - Once anything is drawn, a Location that has since moved stops generate_storyboard instead, and the refusal names every place whose pictures re-bake — the derived Locations included. Read that line to the director as it stands, place by place, and pass acknowledgeRebake only after they approve. When they would rather keep the Cuts already drawn, add rebakeCuts=false: only the undrawn Cuts are baked, and the stale plates wait for the pass that draws them.
 - get_scene_board shows composition, coverage, shot progression, and rhythm across one Scene; get_cut_image is for facial or visual detail only. Read its returned Stage before judging whether you are seeing Sketch, Digital Art, or Photorealistic. get_cut_prompt reads the prompt that actually went to the image model on that Cut's last Sketch or finalize, together with the reference kinds that were attached.
-- Check the Portrait and Plate state of every Character placed in the affected Scenes. If either asset is missing for anyone, name those Characters and recommend generating their assets first, because Sketches drawn without them give one person a different face and costume in each Cut.
+- Before AI Cut generation, check the Portrait and Plate state of every Character placed in the affected Scenes. If either asset is missing for anyone, name those Characters and recommend generating their assets first, because AI Sketches drawn without them give one person a different face and costume in each Cut.
 
 *The test:* you have read the Scenes about to be drawn, not only the request that asked for them.
 
@@ -32,4 +35,4 @@ One Draft bakes one range at a time.
 
 *The test:* every Scene you called queued has a job_id of its own.
 
-Complete when: Every requested Scene board is either visibly inspected, proven generated, proven failed, or accurately reported as still processing with its Job identifier.
+Complete when: Every requested Scene board is visibly inspected, proven selected, proven failed, processing with a returned Job identifier, or explicitly waiting on named local 3D work. A render candidate alone is not a selected Sketch.
