@@ -7,7 +7,7 @@ description: Direct MOVIOLA projects through MOVIOLA MCP tools. Use when Claude 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `0.1.21`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `0.1.23`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
 
 ## Run the directing loop
 
@@ -103,6 +103,6 @@ Complete when: Every returned rejection or warning is fixed, confirmed for one n
 - Report only returned fields, targets, warnings, counts, and statuses. State partial success, skipped targets, failure, unavailable tools, and still-processing work plainly.
 - Poll get_job_status for image and Character-asset Jobs. A 2D board Job reports completedCutCount out of totalCutCount, which rise one Cut at a time; while phase is prompt nothing is drawn yet — say so, not 0. A 3D Job has no Cut count, so never report one: a Mac worker Job is read by status, then by stage while active; a generate_render_sketch Job by status and selection.status (scene-3d-sketch.md). On failure report the returned error at once and never retry a content_policy_violation unchanged.
 - duplicate_project answers with a job_id, not the copy — poll get_job_status with a Draft of the **source** Project (the response's pollWith.draftId), and the finished result.duplicatedProject names the copy. It carries pictures and clips too, so it runs long: report copiedFileCount out of totalFileCount and call it duplicated only once the job is completed.
-- Stop paid work only on the director's request. cancel_job cancels one image or render Job; report the returned outcome plainly — cancelled, too_late, or already_cancelled — never as a refund or as proof the provider stopped. Cancelling an Animatic is in animatics.md.
+- Stop paid work only on the director's request. cancel_job cancels one 2D board, Cut, or finalize_render Job, or one Mac worker 3D Sketch Job — queued, running or paused; report the returned outcome plainly — cancelled, too_late, or already_cancelled — never as a refund or as proof the provider stopped. A cancelled Mac worker Job is final and keeps the Scene's source, setups and Sketches; a running one's worker stops its local agent at its next heartbeat, but an AI Sketch it already sent to a provider still finishes and may reach the board; a later Generate is a new request. A generate_render_sketch Job answers not_cancellable with its current status and changes nothing — say exactly that, not that the job_id is wrong. Cancelling an Animatic is in animatics.md.
 - When you report a stage finished, close that report with one line naming the stage above it and the one thing that stage is still waiting on. Propose it and stop there; the director chooses. Say nothing of the sort after one field edit, one status read, or an answered question — a next step after every call is noise.
 Complete when: The director can distinguish completed work, failed or partial work, pending decisions, and queued work without inference.
