@@ -22,6 +22,7 @@ A warning is either fixed or shown.
 A paid pixel action re-reads its target first.
 
 - Inspect the affected Scene or Draft again. If the gate blocks, fix the warning or, after confirmation, pass only returned ackKey values through the acknowledgment argument advertised by that tool. Never construct or reuse an acknowledgment, because one applies to that call alone.
+- provider_key_required (provider comfy or meshy; comfy is the ComfyUI Cloud key) means this account pays with its own key and has none saved (a fal key saved earlier no longer counts; generation needs the ComfyUI Cloud key); nothing started or was charged. Tell the director to add that key under Settings → Provider Keys (settingsUrl) and retry only after they say it is saved.
 
 *The test:* every returned item has one visible disposition — fixed, confirmed for the next call, or waiting on the director.
 
