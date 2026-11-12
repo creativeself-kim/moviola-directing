@@ -2,6 +2,19 @@
 
 # Shot Design
 
+## Contents
+
+- 1 · Intent Decides the Design
+- 2 · Stay on One Side of the Line
+- 3 · Move Only Where the Model Can
+- 4 · Let the Beat Set the Length
+- 5 · Write What the Value Needs
+  - shotSize
+  - cameraAngle
+  - cameraMovement
+  - composition
+  - lightingStyle
+
 ## 1 · Intent Decides the Design
 
 The beat picks the shot, and the pieces have to agree with each other.
