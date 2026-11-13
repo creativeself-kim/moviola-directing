@@ -51,23 +51,31 @@ needs no token and no settings page, so it comes first.
 
 ```bash
 npx skills add creativeself-kim/moviola-directing \
-  --skill moviola-directing moviola-setup \
+  --skill '*' \
   --agent claude-code cursor codex \
   --global \
   --yes
 ```
 
-That installs two skills. **`moviola-directing`** is the directing manual, and your
-assistant reaches for it when the work calls for it. **`moviola-setup`** you run by
-name, once per work folder, to tie that folder to a production — it writes the
-production card, pulls down the plans and notes already on the server, and points
-`CLAUDE.md` at them.
+That installs four skills. **`moviola-directing`** is the directing manual, and your
+assistant reaches for it when the work calls for it. The other three run only when you
+call them by name:
+
+- **`/moviola-setup`** — once per work folder, to tie that folder to a production. It
+  writes the production card, pulls down the plans and notes already on the server, and
+  points `CLAUDE.md` at them.
+- **`/moviola-3d-sketch`** — builds a Scene in Blender from its Master image and takes
+  Cut Sketches from it.
+- **`/moviola-review`** — reviews a Draft without changing its Scenes or Cuts. A paid
+  clip review runs only after you confirm it.
+
+The three commands lean on the directing manual, so install all four together.
 
 The three agents are named rather than wildcarded on purpose. `--agent '*'` writes
 skill directories for every agent the CLI knows about, installed or not. If your agent
 is not one of the three, add it to the list.
 
-**Plugin alternative.** Claude Code and Codex can take the same two skills as a plugin
+**Plugin alternative.** Claude Code and Codex can take the same four skills as a plugin
 instead, which puts installs and updates in one listing. Either path is enough on its
 own, so there is no reason to install both. In Claude Code:
 
@@ -200,9 +208,11 @@ machine.
 ```
 skills/
   moviola-directing/                the directing manual and its reference files
-  moviola-setup/                    the work-folder setup skill
+  moviola-setup/                    /moviola-setup: tie a work folder to a production
+  moviola-3d-sketch/                /moviola-3d-sketch: Blender Scene and Cut Sketches
+  moviola-review/                   /moviola-review: review a Draft
 plugins/
-  moviola-directing/                the same two skills, packaged as a plugin
+  moviola-directing/                the same four skills, packaged as a plugin
 .agents/plugins/marketplace.json    Codex marketplace listing
 .claude-plugin/marketplace.json     Claude Code marketplace listing
 ```

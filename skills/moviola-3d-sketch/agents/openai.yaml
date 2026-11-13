@@ -1,0 +1,5 @@
+interface:
+  display_name: "MOVIOLA 3D Sketch"
+  short_description: "Build a 3D Scene and its first Cut Sketches."
+policy:
+  allow_implicit_invocation: false

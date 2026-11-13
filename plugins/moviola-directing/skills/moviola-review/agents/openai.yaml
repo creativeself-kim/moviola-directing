@@ -1,0 +1,5 @@
+interface:
+  display_name: "MOVIOLA Review"
+  short_description: "Review a MOVIOLA Draft without editing its Scenes or Cuts."
+policy:
+  allow_implicit_invocation: false
