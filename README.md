@@ -57,9 +57,13 @@ npx skills add creativeself-kim/moviola-directing \
   --yes
 ```
 
-That installs four skills. **`moviola-directing`** is the directing manual, and your
-assistant reaches for it when the work calls for it. The other three run only when you
+That installs five skills. **`moviola-directing`** is the directing manual, and your
+assistant reaches for it when the work calls for it. The other four run only when you
 call them by name:
+
+- **`/moviola-help`** — ask anything: is my setup done, where does my Draft stand and
+  what comes next, what do I say to get something done, why is it not working, what
+  changed. It answers and hands you the next prompt to send, without changing anything.
 
 - **`/moviola-setup`** — once per work folder, to tie that folder to a production. It
   writes the production card, pulls down the plans and notes already on the server, and
@@ -69,13 +73,18 @@ call them by name:
 - **`/moviola-review`** — reviews a Draft without changing its Scenes or Cuts. A paid
   clip review runs only after you confirm it.
 
-The three commands lean on the directing manual, so install all four together.
+The four commands lean on the directing manual, so install all five together.
+
+**Calling a command.** Claude Code types them with `/`, as above. Codex calls skills with
+`$` instead: `$moviola-help`. If you installed through the Codex plugin, add the plugin
+name in front — `$moviola-directing:moviola-help` — or Codex sends the line to the model
+as plain text, without an error.
 
 The three agents are named rather than wildcarded on purpose. `--agent '*'` writes
 skill directories for every agent the CLI knows about, installed or not. If your agent
 is not one of the three, add it to the list.
 
-**Plugin alternative.** Claude Code and Codex can take the same four skills as a plugin
+**Plugin alternative.** Claude Code and Codex can take the same five skills as a plugin
 instead, which puts installs and updates in one listing. Either path is enough on its
 own, so there is no reason to install both. In Claude Code:
 
@@ -208,11 +217,12 @@ machine.
 ```
 skills/
   moviola-directing/                the directing manual and its reference files
+  moviola-help/                     /moviola-help: setup, where you are, what changed
   moviola-setup/                    /moviola-setup: tie a work folder to a production
   moviola-3d-sketch/                /moviola-3d-sketch: Blender Scene and Cut Sketches
   moviola-review/                   /moviola-review: review a Draft
 plugins/
-  moviola-directing/                the same four skills, packaged as a plugin
+  moviola-directing/                the same five skills, packaged as a plugin
 .agents/plugins/marketplace.json    Codex marketplace listing
 .claude-plugin/marketplace.json     Claude Code marketplace listing
 ```

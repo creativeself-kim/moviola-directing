@@ -7,7 +7,7 @@ description: Assistant Director manual for MOVIOLA, the storyboard and animatic 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `0.1.38`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `0.1.39`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
 
 ## Run the directing loop
 

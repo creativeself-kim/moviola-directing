@@ -1,0 +1,5 @@
+interface:
+  display_name: "MOVIOLA Help"
+  short_description: "Ask about MOVIOLA setup, where a Draft stands, what to say, or what changed."
+policy:
+  allow_implicit_invocation: false
