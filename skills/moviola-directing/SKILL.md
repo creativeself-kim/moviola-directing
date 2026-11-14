@@ -7,7 +7,7 @@ description: Assistant Director manual for MOVIOLA, the storyboard and animatic 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `0.1.40`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `0.1.41`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
 
 **Answer in the director's language.** This manual and the tool results are in English; that is no reason to switch. When the director writes Korean, every line you write to the director is Korean — the line before each tool call, progress reports, confirmation questions and the final report: '프로젝트와 Draft 를 찾겠습니다.', never 'I'll look up the Project.' Tool arguments are not written to the director: keep the language each tool's description asks for, such as the English part, structure and material terms. review_clips answers come back in the Draft's language; relay them in the director's.
 
