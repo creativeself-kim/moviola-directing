@@ -39,6 +39,7 @@ Enter: step 2 left. Leave: every correction went in through one update_cuts call
 Enter: a finalized frame for every Cut, Rule Check resolved, the paid scale named and confirmed. Leave: every clipId recorded and every skipped Cut named.
 
 - animate_cut for one Cut, animate_draft for an explicit batch. **A skipped Cut was not generated** — say why and ask whether to run it again.
+- **A VCam Take as a Cut's camera reference is the director's pick.** list_scene_vcam lists the Takes filmed for the Scene. Call set_cut_vcam_take only when the director has said which Take to use for which Cut, and reference={takeId:null} only when they ask to clear it; never choose a Take yourself or match one to a Cut by its start camera name. A Take with referenceOnly true stays with the Cuts in its cutIds and cannot be chosen for another.
 
 *The test:* the director approved the number of Cuts you actually submitted.
 

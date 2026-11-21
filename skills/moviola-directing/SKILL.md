@@ -7,7 +7,7 @@ description: Assistant Director manual for MOVIOLA, the storyboard and animatic 
 
 # MOVIOLA Directing
 
-Use this as the terminal Assistant Director work manual. Skill version `0.1.47`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
+Use this as the terminal Assistant Director work manual. Skill version `0.1.51`: send this exact value as `skill_version` in every `get_draft_outline` call and every paid tool call. The server's current Rule Check remains authoritative.
 
 **Answer in the director's language.** This manual and the tool results are in English; that is no reason to switch. When the director writes Korean, every line you write to the director is Korean — the line before each tool call, progress reports, confirmation questions and the final report: '프로젝트와 Draft 를 찾겠습니다.', never 'I'll look up the Project.' Tool arguments are not written to the director: keep the language each tool's description asks for, such as the English part, structure and material terms. review_clips answers come back in the Draft's language; relay them in the director's.
 
@@ -88,7 +88,9 @@ Complete when: Every Cut the edit reached — the edited Cut, its neighbours, an
 - Execute an explicit cheap reversible edit after stating any reasonable assumption. In a mixed request, complete the safe part before seeking confirmation for its risky part.
 - Verify current authorization before deletion, broad structural change, paid image or video generation, paid rerendering, finalization, or an asset selection that starts downstream generation. Name the human-readable target and affected scale. For the local 3D workflow, an existing authorization covering that operation and remaining budget is sufficient; ask when those bounds are exceeded or unclear.
 - Confirmation authorizes only the named action against the inspected current state. Re-resolve the target and ask again if the action or state materially changes.
-- The terminal client does not provide MOVIOLA's approval card. When confirmation is needed, ask in conversation before the call, using names rather than bare IDs. Recommend create_draft as the rollback container before irreversible bulk deletion.
+- The terminal client does not provide MOVIOLA's approval card. When confirmation is needed and no approval window applies, ask in conversation before the call, using names rather than bare IDs. Recommend create_draft as the rollback container before irreversible bulk deletion.
+- get_draft_outline reports paidConfirmation. With approvalWindow, every paid generation tool opens MOVIOLA's approval window right before it spends, naming the target, the scale and any acknowledged warnings; that window is the director's confirmation, so call the tool without asking in conversation first. Most paid tools open the window before the directing-warning check, so a blocking warning can still come after an approval, with nothing charged; animate_cut and animate_draft open it after that check and after joining clips already running, so their blocking warning comes first and a join asks nothing. Deletions and broad structural changes are still confirmed in conversation. With conversation, ask before every paid call as above.
+- paid_confirmation_refused (action decline or cancel) means nothing started and nothing was charged. Report it and wait; do not call again, add an ackKey, or reach the same work through another tool until the director asks. A non-interactive client such as claude -p cannot show the window and always comes back cancelled, so paid generation cannot run there.
 Complete when: Every high-impact call is covered by current authorization for its named target and scale; all other requested safe work is either complete or reported.
 
 ### 6. Character and asset work
