@@ -1,13 +1,13 @@
 ---
 name: moviola-3d-sketch
-description: Run the MOVIOLA 3D Sketch procedure for one Scene — build or revise its Blender Scene from the Master, frame the saved Cut cameras, and produce the first AI Cut Sketches. Needs local Blender with the MOVIOLA extension connected in this session, or the director's Mac worker. Run by name, followed by the Project, Draft, and Scene (and Cuts, if narrowed) to work on.
+description: Run the MOVIOLA 3D Sketch procedure for one Scene — have the server build or revise its 3D Scene from the Master, frame each Cut from the VCam Still the director chooses or else with the Assistant Director's own camera, and produce the first AI Cut Sketches. A Scene still on an older .blend source continues in local Blender or on the director's Mac worker. Run by name, followed by the Project, Draft, and Scene (and Cuts, if narrowed) to work on.
 disable-model-invocation: true
 ---
 
 # MOVIOLA 3D Sketch
 
-씬 하나를 Master 에서 Blender Scene 으로 세우고, 저장된 Cut 카메라로 첫 AI Sketch 까지
-가는 절차를 이름으로 부르는 자리다. 절차는 `moviola-directing` 스킬이 들고 있고, 이
+씬 하나를 Master 에서 서버가 짓는 3D Scene 으로 세우고, 감독이 고른 VCam Still 구도나 조연출이 잡은 구도로 첫
+AI Sketch 까지 가는 절차를 이름으로 부르는 자리다. 절차는 `moviola-directing` 스킬이 들고 있고, 이
 스킬은 그쪽을 가리키기만 한다.
 
 ### 1. 조연출 매뉴얼을 끝까지 먼저 읽는다

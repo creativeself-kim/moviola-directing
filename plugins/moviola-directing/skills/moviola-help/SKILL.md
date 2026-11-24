@@ -12,7 +12,7 @@ disable-model-invocation: true
 
 **도움 질문에는 아무것도 바꾸지 않는다.** 읽기만 한다 — `list_projects` · `list_drafts`
 · `get_draft_outline` · `list_characters` · `get_scene` · `list_work_files`, 로컬 파일
-읽기, `git rev-parse` 같은 읽기 전용 셸, 아래가 가리키는 읽기 전용 Blender 확인. MCP 로
+읽기, `git rev-parse` 같은 읽기 전용 셸. MCP 로
 만들거나 고치지 않고, 파일을 쓰지 않고, 유료 호출을 하지 않는다. 일은 감독이 건넨
 프롬프트를 보낼 때 시작된다.
 
@@ -43,7 +43,7 @@ disable-model-invocation: true
 
 ## 세팅이 됐나?
 
-넷을 본다. 빠진 것만 고치는 법과 함께 알리고, 다 됐으면 한 줄로 됐다고 한다.
+셋을 본다. 빠진 것만 고치는 법과 함께 알리고, 다 됐으면 한 줄로 됐다고 한다.
 
 - **MOVIOLA MCP** — MOVIOLA 도구가 이 세션에 광고되고 `list_projects` 가 읽히나.
 - **스킬** — [moviola-directing](../moviola-directing/SKILL.md) ·
@@ -54,8 +54,6 @@ disable-model-invocation: true
 - **작품 폴더** — `/moviola-setup` 을 돌렸나. 이 클라이언트가 읽은 지시 파일에
   `## MOVIOLA` 블록이 있고, `moviola/project.md` 가 있고, 그 서버 줄이 지금 붙은 MCP
   주소와 맞나.
-- **Blender** — 3D 씬을 이 컴퓨터에서 만들 때만. Blender 실행기가 붙었고 켜진
-  `moviola_vcam` 이 하나인가.
 
 무엇을 어떻게 보는지는 [moviola-setup 1. 살핀다](../moviola-setup/SKILL.md#1-살핀다)에
 있다. 그 절의 읽기만 하고 2번 앞에서 멈춘다 — 쓰는 것은 세팅의 일이다. 빠진 것이 연결이나
@@ -102,7 +100,7 @@ disable-model-invocation: true
 | 표본 조건 검색이나 컷 리듬 추천 도구가 없다 | 이 연결의 도구 목록(profile)에 없다. MCP 안내의 `[이 연결의 도구 목록]` 줄이 어느 쪽인지 말한다 | `X-Moviola-Profile` 헤더에 `advanced`(`search_directing_samples` · `list_directing_samples`) 또는 `recommend`(`recommend_cut_rhythm`)를 넣고 다시 붙는다. `recommend` 라면 Claude Code 는 MCP 설정의 `headers` 에 `"X-Moviola-Profile": "recommend"`, Codex 는 `config.toml` 의 `[mcp_servers.moviola]` 아래 `http_headers = { "X-Moviola-Profile" = "recommend" }` 다. Codex 는 `headers` 키를 경고 없이 버린다 |
 | 서버가 스킬이 없다거나 낡았다고 한다 | 스킬이 안 깔렸거나 옛 판이다 | `npx skills add creativeself-kim/moviola-directing --skill '*' --agent claude-code cursor codex --global --yes` 를 다시 돌린다. 플러그인으로 깔았으면 `claude plugin update moviola-directing@moviola`, Codex 는 `codex plugin marketplace upgrade` 뒤 `codex plugin add moviola-directing@moviola` |
 | 명령이 안 불린다, Codex 에서 `Unrecognized command`, Codex 가 명령을 평문으로 받는다 | Codex 는 스킬을 `/` 가 아니라 `$` 로 부른다. Codex 플러그인 설치에서 `moviola-directing:` 접두어 없이 부르면 오류 없이 평문으로 간다. 아니면 스킬이 다 안 깔렸다 | Codex 는 `$moviola-help` 로 부른다. 플러그인이면 `/moviola-directing:moviola-help`(Codex 는 `$moviola-directing:moviola-help`). 그래도 없으면 위 설치 명령을 다시 돌리고 세션을 새로 연다 |
-| Blender 실행기가 없다, 켜진 `moviola_vcam` 이 0개 · 둘 이상, `Unknown Scene command`, `ModuleNotFoundError` | 로컬 Blender 쪽 준비가 덜 됐다 | [moviola-setup 1. 살핀다](../moviola-setup/SKILL.md#1-살핀다)의 Blender 쪽 준비를 따른다 |
+| 옛 `.blend` 씬에서 Blender 실행기가 없다, 켜진 `moviola_vcam` 이 0개 · 둘 이상, `Unknown Scene command`, `ModuleNotFoundError` | 그 씬을 이어 갈 로컬 Blender 쪽 준비가 덜 됐다. 새 3D 씬은 Blender 가 필요 없다 | [scene-3d-sketch.md 8절](../moviola-directing/references/scene-3d-sketch.md#8--older-work-in-blender)의 처방을 따른다 |
 | 도구는 되는데 규약을 안 따른다 | MCP 연결과 스킬은 따로 깐다 | 위 설치 명령으로 스킬을 깐다 |
 
 ## 뭐가 바뀌었어?

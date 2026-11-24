@@ -2,7 +2,7 @@
 
 # Renders and Rerenders
 
-- For a 3D Sketch composition change, follow scene-3d-sketch.md to revise the saved Editor intent and Blender setup, review a new render and call generate_render_sketch. The regeneration instructions below apply to 2D generation or an explicitly requested 2D derivative. When finalizing a 3D Sketch, inspect the selected input and compare the resulting composition rather than assuming provenance guarantees a visual match.
+- For a 3D Sketch composition change, follow scene-3d-sketch.md to revise the saved Editor intent and the Cut's setup — a new VCam Still the director chooses or your corrected publish_cut_setup, or for an older .blend Scene its camera in Blender — review a new render and call generate_render_sketch. The regeneration instructions below apply to 2D generation or an explicitly requested 2D derivative. When finalizing a 3D Sketch, inspect the selected input and compare the resulting composition rather than assuming provenance guarantees a visual match.
 
 ## 1 · Text Before Pixels
 

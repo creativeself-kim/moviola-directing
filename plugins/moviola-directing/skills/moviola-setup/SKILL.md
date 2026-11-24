@@ -1,6 +1,6 @@
 ---
 name: moviola-setup
-description: Set up a MOVIOLA work folder — pick the Project on the server, write the project card, pull the plans and notes already on the server down into the folder, and point the instruction file this client reads (CLAUDE.md or AGENTS.md) at it. Also reports whether MOVIOLA MCP and the local Blender pieces are ready. Run once per work folder, by name, before directing from that folder — including on a new machine.
+description: Set up a MOVIOLA work folder — pick the Project on the server, write the project card, pull the plans and notes already on the server down into the folder, and point the instruction file this client reads (CLAUDE.md or AGENTS.md) at it. Also reports whether MOVIOLA MCP is ready. Run once per work folder, by name, before directing from that folder — including on a new machine.
 disable-model-invocation: true
 ---
 
@@ -118,36 +118,10 @@ disable-model-invocation: true
 
 못 찾으면 감독에게 물어라. **지어내지 마라.**
 
-**Blender 쪽 준비는 보고만 한다.** 3D 씬을 이 컴퓨터의 Blender 로 만들 때만 필요하고,
-없어도 세팅은 계속한다. 셋을 차례로 본다 — 앞이 없으면 뒤는 못 본다. 실행기로 돌리는
-것은 아래 코드 하나뿐이다.
-
-- **Blender 실행기** — 이 세션에 Blender 의 Python 실행 도구(`execute_blender_code`)가
-  광고되나. 없으면 호환 실행기인 MCP for Blender 의 설치·갱신 안내를 댄다 —
-  <https://github.com/ahujasid/mcp-for-blender> (커뮤니티 플러그인이다. Blender 재단 것이
-  아니다). 붙인 뒤 Blender 에서 그 애드온을 켜고 세션을 새로 연다.
-- **켜진 `moviola_vcam`** — 실행기로 아래를 돌린다. 디스크에 확장 폴더가 있어도 켜졌다는
-  증거가 아니라서 켜진 확장 목록만 보고, 하나일 때만 Scene 명령의 읽기 전용 `status` 를
-  부른다.
-
-  ```python
-  import bpy, importlib
-  modules = [a.module for a in bpy.context.preferences.addons
-             if a.module.rsplit(".", 1)[-1] == "moviola_vcam"]
-  print(modules)
-  if len(modules) == 1:
-      print(importlib.import_module(modules[0] + ".scene_commands").execute("status"))
-  ```
-
-  다른 checkout 을 `sys.path` 에 넣어 import 하지 마라 — 화면의 확장과 다른 변경 잠금이
-  생긴다. 0개면 설치하거나 켜고, 둘 이상이면 쓸 하나만 남기고 끈다.
-- **Scene 명령** — `status` 가 돌아오면 Scene 명령이 있는 확장이다. 이 판의 명령을 다
-  아는지까지 보여 주지는 않는다 — 나중에 명령이 `Unknown Scene command` 로 거절되면 그때
-  낡은 확장임이 드러난다. `ModuleNotFoundError` 면 Scene 명령이 없는 옛 확장이다. 둘 다
-  고치는 법은 같다 — 녹화를 멈추고, 이 MOVIOLA 판에 맞는 `moviola_vcam` 확장 ZIP 을
-  Blender 의 Install from Disk 로 설치해 옛 것을 바꾼 뒤, 켜고 다시 돌린다.
-
-본 것은 2번 요약에 한 줄씩 적는다 — 준비됨, 또는 무엇이 빠졌고 무엇을 하면 되는지.
+**Blender 는 보지 않는다.** 새 3D 씬은 서버가 짓고 그려서 Blender 가 필요 없다. 원본이
+옛 `.blend` 인 씬을 이 컴퓨터의 Blender 로 이어 갈 때만 필요하고, 그 준비와 처방은
+[scene-3d-sketch.md 8절](../moviola-directing/references/scene-3d-sketch.md#8--older-work-in-blender)이
+든다.
 
 ### 2. 추천을 먼저 대고 항목마다 묻는다
 
